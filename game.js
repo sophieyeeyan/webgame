@@ -43,7 +43,7 @@ class GameScene extends Scene {
         });
         this.startButton = new PIXI.Sprite(textureButton);
         this.startButton.anchor.set(0.5);
-        this.startButton.x = 1080;
+        this.startButton.x = 1100;
         this.startButton.y = 27;
         this.startButton.interactive = true;
         this.startButton.buttonMode = true;
