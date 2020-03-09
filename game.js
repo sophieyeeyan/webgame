@@ -16,6 +16,47 @@ var textureButton = PIXI.Texture.fromImage('img/start1.png');
 var textureButtonDown = PIXI.Texture.fromImage('img/start3.png');
 var textureButtonOver = PIXI.Texture.fromImage('img/start2.png');
 
+function setup() {
+ gameScene = new Container();
+ this.stage.addChild(gameScene);
+
+ gameOverScene = new Container();
+ this.stage.addChild(gameOverScene);
+
+ gameOverScene.visible = false;
+
+   
+  state = play;
+  //Start the game loop 
+  app.ticker.add(delta => gameLoop(delta));
+
+   let style = new TextStyle({
+      fontFamily: "Futura",
+      fontSize: 64,
+      fill: "white"
+       });
+
+    message = new Text("The End!", style);
+    message.x = 120;
+    message.y = this.height / 2 - 32;
+    gameOverScene.addChild(message);
+}
+
+ 
+
+function end() {
+  gameScene.visible = true;
+  gameOverScene.visible = true;
+}
+
+function gameLoop(delta) {
+  //Runs the current game `state` in a loop and renders the sprites
+  state(delta);
+}
+
+function play(delta) {
+  //All the game logic goes here
+}
 
 class GameScene extends Scene {
 
@@ -183,6 +224,7 @@ class GameScene extends Scene {
         }
 
         this.input = "";
+
     }
 
     startTimer(duration) {
@@ -201,6 +243,16 @@ class GameScene extends Scene {
                 timer = duration;
             }
         }, 1000);
+
+            if (this.timerText < 0 && this.score < 88) {
+            state = end;
+            message.text = "You lost!";
+            }
+
+            if (this.timerText < 0 && this.score > 88) {
+            state = end;
+            message.text = "You win!";
+            }
     }
 
 
@@ -252,6 +304,8 @@ class GameScene extends Scene {
         this.addChild(s);
         this.people.push(p);
     }
+
+
 
     update() {
         super.update();
