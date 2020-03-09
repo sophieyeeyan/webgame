@@ -41,6 +41,8 @@ class GameScene extends Scene {
         this.tweetButton.on('pointerdown', function() {
             $this.submitCode();
         });
+
+        
         this.startButton = new PIXI.Sprite(textureButton);
         this.startButton.anchor.set(0.5);
         this.startButton.x = 1100;
@@ -65,7 +67,7 @@ class GameScene extends Scene {
     
         this.startTimer(60 * 4);
 
-
+        
         this.scoreText = new PIXI.Text(this.score);
         this.scoreText.x = 1050;
         this.scoreText.y = 80;
@@ -73,8 +75,7 @@ class GameScene extends Scene {
         this.scoreText.style.fontFamily = 'Courier';
         this.scoreText.style.fontSize = 40;
         this.scoreText.style.fill = 0x4A4879;
-     
-
+    
         this.h1 = new PIXI.Text('Time Remaining');
         this.h1.x = 50;
         this.h1.y = 55;
@@ -126,36 +127,36 @@ class GameScene extends Scene {
     }
 
     onButtonDown() {
-    this.isdown = true;
-    this.texture = textureButtonDown;
-    this.alpha = 1;
+        this.isdown = true;
+        this.texture = textureButtonDown;
+        this.alpha = 1;
     }
 
- onButtonUp() {
-    this.isdown = false;
-    if (this.isOver) {
+    onButtonUp() {
+        this.isdown = false;
+        if (this.isOver) {
+            this.texture = textureButtonOver;
+        }
+        else {
+            this.texture = textureButton;
+        }
+    }
+
+    onButtonOver() {
+        this.isOver = true;
+        if (this.isdown) {
+            return;
+        }
         this.texture = textureButtonOver;
     }
-    else {
+
+    onButtonOut() {
+        this.isOver = false;
+        if (this.isdown) {
+            return;
+        }
         this.texture = textureButton;
     }
-}
-
- onButtonOver() {
-    this.isOver = true;
-    if (this.isdown) {
-        return;
-    }
-    this.texture = textureButtonOver;
-}
-
- onButtonOut() {
-    this.isOver = false;
-    if (this.isdown) {
-        return;
-    }
-    this.texture = textureButton;
-}
 
 
     submitCode() {
@@ -171,11 +172,16 @@ class GameScene extends Scene {
                 break;
             } else {
                 alert('nope');
+
+                this.score -= 3;
+                this.scoreText.text = this.score;
             }
         }
+
         while(this.inputContainer.children[0]) { 
             this.inputContainer.removeChild(this.inputContainer.children[0]); 
         }
+
         this.input = "";
     }
 
@@ -240,9 +246,6 @@ class GameScene extends Scene {
             var c = coordinates[Math.floor(Math.random() * 8)];
         var p = new Person(c[0],c[1], codes[Math.floor(Math.random()*codes.length)], this.people.length, width, height);
         
-
-
-
     
         console.log(p);
         var s = p.create();
