@@ -1,9 +1,24 @@
 const buttons = [
-    {img:'img/button1.png', w:48, h:48, x:10, y:0, speechImg:'img/speech1.png'},
-    {img:'img/button2.png', w:2, h:2, x:108, y:0, speechImg:'img/speech2.png'},
-    {img:'img/button3.png', w:2, h:2, x:199, y:0, speechImg:'img/speech3.png'},
-    {img:'img/button4.png', w:2, h:2, x:10, y:56, speechImg:'img/speech4.png'},
-    {img:'img/button5.png', w:2, h:2, x:10, y:56, speechImg:'img/speech5.png'},
+    {img:'img/button1.png', w:179/2, h:48, x:10, y:0, speechImg:'img/speech1.png'},
+    {img:'img/button2.png', w:48, h:48, x:150, y:0, speechImg:'img/speech2.png'},
+    {img:'img/button3.png', w:48, h:48, x:200, y:0, speechImg:'img/speech3.png'},
+    {img:'img/button4.png', w:48, h:48, x:250, y:0, speechImg:'img/speech4.png'},
+    {img:'img/button5.png', w:48, h:48, x:10, y:56, speechImg:'img/speech5.png'},
+    {img:'img/button6.png', w:48, h:48, x:150, y:56, speechImg:'img/speech6.png'},
+    {img:'img/button7.png', w:48, h:48, x:200, y:56, speechImg:'img/speech7.png'},
+    {img:'img/button8.png', w:48, h:48, x:250, y:56, speechImg:'img/speech8.png'},
+    {img:'img/button9.png', w:48, h:48, x:10, y:100, speechImg:'img/speech9.png'},
+    {img:'img/button10.png', w:48, h:48, x:150, y:100, speechImg:'img/speech10.png'},
+    {img:'img/button11.png', w:48, h:48, x:200, y:100, speechImg:'img/speech11.png'},
+    {img:'img/button12.png', w:48, h:48, x:250, y:100, speechImg:'img/speech12.png'},
+    {img:'img/button13.png', w:48, h:48, x:199, y:0, speechImg:'img/speech13.png'},
+    {img:'img/button14.png', w:48, h:48, x:10, y:56, speechImg:'img/speech14.png'},
+    {img:'img/button15.png', w:48, h:48, x:10, y:56, speechImg:'img/speech15.png'},
+    {img:'img/button16.png', w:48, h:48, x:10, y:0, speechImg:'img/speech16.png'},
+    {img:'img/button17.png', w:48, h:48, x:150, y:0, speechImg:'img/speech17.png'},
+    {img:'img/button18.png', w:48, h:48, x:199, y:0, speechImg:'img/speech18.png'},
+    {img:'img/button19.png', w:48, h:48, x:10, y:56, speechImg:'img/speech19.png'},
+    {img:'img/button20.png', w:48, h:48, x:10, y:56, speechImg:'img/speech20.png'},
     // {img:'img/button5.png', w:78, h:78, x:0, y:0},
 ];
 
@@ -36,6 +51,10 @@ var startgameTextureOver = PIXI.Texture.from('img/startgame2.png');
 var cancelTexture = PIXI.Texture.from('img/cancel1.png');
 var cancelTextureDown = PIXI.Texture.from('img/cancel2.png');
 var cancelTextureOver = PIXI.Texture.from('img/cancel2.png');
+
+var abtnextTexture = PIXI.Texture.from('img/abtnext1.png');
+var abtnextTextureDown = PIXI.Texture.from('img/abtnext3.png');
+var abtnextTextureOver = PIXI.Texture.from('img/abtnext2.png');
 
 const style40 = new PIXI.TextStyle({
     fontSize: 40,
@@ -111,6 +130,45 @@ class GameScene extends Scene {
         this.aboutButton.on('pointerover', this.onButtonOver);
         this.aboutButton.on('pointerout', this.onButtonOut);
         this.addChild(this.aboutButton);
+        this.aboutButton.on('pointerdown', function() {
+            $this.addChild($this.aboutContainer);
+
+            });
+
+        this.aboutContainer = new PIXI.Container();
+        this.aboutbg = new PIXI.Sprite.from('img/aboutbg.png');
+        this.aboutbg.x =0;
+        this.aboutbg.y =0;
+        this.aboutbg.width = 1300;
+        this.aboutbg.height = 800;
+
+        this.addChild(this.aboutbg);
+
+        this.abtnextButton = new PIXI.Sprite(abtnextTexture);
+        this.abtnextButton.anchor.set(0.5);
+        this.abtnextButton.x = 1200;
+        this.abtnextButton.y = 700;
+        this.abtnextButton.interactive = true;
+        this.abtnextButton.buttonMode = true;
+        this.abtnextButton.normal = abtnextTexture;
+        this.abtnextButton.over = abtnextTextureOver;
+        this.abtnextButton.down = abtnextTextureDown;
+        this.abtnextButton.on('pointerdown', this.onButtonDown);
+        this.abtnextButton.on('pointerup', this.onButtonUp);
+        this.abtnextButton.on('pointerover', this.onButtonOver);
+        this.abtnextButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.abtnextButton);
+
+        
+        this.aboutContainer.addChild(this.aboutbg);
+        this.aboutContainer.addChild(this.abtnextButton);
+
+        this.abtnextButton.on('pointerdown', function() {
+            $this.removeChild($this.aboutContainer);
+    
+            });
+
+
 
         //testing adding text
         this.timerText = new PIXI.Text('03:00', style40);
@@ -143,23 +201,16 @@ class GameScene extends Scene {
         this.addChild(this.line);
 
         this.speechContainer = new PIXI.Container();
-        this.addChild(this.speechContainer)
-        this.speechbg = new PIXI.Sprite.from('img/speechbg.png');
-        this.speechbg.x = 350;
-        this.speechbg.y = 500;
-        this.autoresize = true;
-        this.addChild(this.speechbg);
-
-        this.speechContainer.addChild(this.speechbg);
 
         this.tweetButton = new Button('img/sendbutton.png');
         this.tweetButton.x = 840;
         this.tweetButton.y = 700;
         this.tweetButton.width = 130;
         this.tweetButton.height = 50;
-        this.addChild(this.tweetButton);
         this.tweetButton.on('pointerdown', function() {
             $this.submitCode();
+
+
         });
 
         this.cancelButton = new PIXI.Sprite(cancelTexture);
@@ -177,11 +228,15 @@ class GameScene extends Scene {
         this.cancelButton.on('pointerout', this.onButtonOut);
         this.addChild(this.cancelButton);
 
-        this.speechContainer.addChild(this.cancelButton);
+        this.speechbg = new PIXI.Sprite.from('img/speechbg.png');
+        this.speechbg.x = 350;
+        this.speechbg.y = 500;
+        this.autoresize = true;
+        this.addChild(this.speechbg);
 
-
-
-    
+        this.speechContainer.addChild(this.speechbg);
+        this.speechContainer.addChild(this.tweetButton);
+        this.speechContainer.addChild(this.cancelButton);    
 
         this.manual1 = new PIXI.Sprite.from('img/manual1.png');
         this.manual1.anchor.set(0.5);
@@ -357,8 +412,10 @@ class GameScene extends Scene {
 
         this.startgameButton.on('pointerdown', function() {
             $this.removeChild($this.popup3Container);
-            $this.startTimer(15);
+            $this.startTimer(3);
             $this.spawn();
+            $this.addChild($this.speechContainer)
+
 
             });
 
@@ -370,19 +427,19 @@ class GameScene extends Scene {
         this.popuplose.endFill();
         this.popuploseContainer.addChild(this.popuplose);
 
-        this.loseText = new PIXI.Text();
-        this.loseText.text = "You Lose";
-        this.loseText.x = (this.popup3Container.width/2) - (this.goalText.width/2);
-        this.loseText.y = 50;
-        this.addChild(this.loseText);
-        this.loseText.style.fontFamily = 'Courier';
-        this.loseText.style.fontSize = 30;
-        this.loseText.style.fill = 0x4A4879;
+        this.lose1Text = new PIXI.Text();
+        this.lose1Text.text = "You Lose";
+        this.lose1Text.x = (this.popuploseContainer.width/2) - (this.lose1Text.width/2);
+        this.lose1Text.y = 50;
+        this.addChild(this.lose1Text);
+        this.lose1Text.style.fontFamily = 'Courier';
+        this.lose1Text.style.fontSize = 30;
+        this.lose1Text.style.fill = 0x4A4879;
 
-        this.popuploseContainer.addChild(this.loseText);
+        this.popuploseContainer.addChild(this.lose1Text);
 
         this.popuploseText = new PIXI.Text();
-        this.popuploseText.text = "You fail to influence enough\n people with your tweet.\nStart again!";
+        this.popuploseText.text = "You fail to influence enough\npeople with your tweet.\nStart again!";
         this.popuploseText.x = (this.popuploseContainer.width/2) - (this.popuploseText.width/2);
         this.popuploseText.y = (this.popuploseContainer.height/2) - (this.popuploseText.height/2);
         this.addChild(this.popuploseText);
@@ -413,9 +470,9 @@ class GameScene extends Scene {
         this.popuploseContainer.addChild(this.startgameButton);
 
         this.startgameButton.on('pointerdown', function() {
-            $this.removeChild($this.popuploseContainer);
-            $this.startTimer(60 * 3);
-            $this.spawn();
+            //$this.removeChild($this.popuploseContainer);
+            //$this.startTimer(60 * 3);
+            //$this.spawn();
 
             });
        
@@ -482,6 +539,7 @@ class GameScene extends Scene {
     }
 
     startTimer(duration) {
+        console.log("hello");
         const $this = this;
         var timer = duration, minutes, seconds;
         setInterval(function () {
@@ -495,16 +553,21 @@ class GameScene extends Scene {
 
             if (--timer < 0) {
                 timer = duration;
-            }
-        }, 1000);
-
-            if (this.timerText < 0 && this.score < 88) {
-            $this.addChild($this.popuploseContainer);
+                console.log("foofoof");
+                console.log($this.score);
+            if ( $this.score < 88) {
+                console.log("score correct");
+                $this.addChild($this.popuploseContainer);
+                
             }
 
             if (this.timerText < 0 && this.score > 88) {
             $this.addChild($this.popupwinContainer);
             }
+            }
+        }, 1000);
+
+          
     }
 
 
@@ -515,6 +578,9 @@ class GameScene extends Scene {
             
             button.x = buttons[i].x;
             button.y = 500 + buttons[i].y;
+            button.w = 36
+            button.h = 36
+
           
             button.number = i;
             this.addChild(button);
@@ -549,8 +615,11 @@ class GameScene extends Scene {
             [830, 294],
             [760, 169],
             [859,366]];
+            var choice = ["a","b","c","d"];
         var c = coordinates[Math.floor(Math.random() * 8)];
-        var p = new Person(c[0],c[1], codes[Math.floor(Math.random()*codes.length)], this.people.length, width, height);
+        var myc =  choice[Math.floor(Math.random() * 4)];
+         console.log(myc);
+        var p = new Person(c[0],c[1], codes[Math.floor(Math.random()*codes.length)], this.people.length, myc, width, height);
         //this.Person.interactive = true;
         //this.Person.buttonMode = true;
         
