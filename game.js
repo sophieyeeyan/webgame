@@ -1,24 +1,25 @@
+const b_gap = 0;
 const buttons = [
-    {img:'img/button1.png', w:179/2, h:48, x:10, y:0, speechImg:'img/speech1.png'},
-    {img:'img/button2.png', w:48, h:48, x:150, y:0, speechImg:'img/speech2.png'},
-    {img:'img/button3.png', w:48, h:48, x:200, y:0, speechImg:'img/speech3.png'},
-    {img:'img/button4.png', w:48, h:48, x:250, y:0, speechImg:'img/speech4.png'},
-    {img:'img/button5.png', w:48, h:48, x:10, y:56, speechImg:'img/speech5.png'},
-    {img:'img/button6.png', w:48, h:48, x:150, y:56, speechImg:'img/speech6.png'},
-    {img:'img/button7.png', w:48, h:48, x:200, y:56, speechImg:'img/speech7.png'},
-    {img:'img/button8.png', w:48, h:48, x:250, y:56, speechImg:'img/speech8.png'},
-    {img:'img/button9.png', w:48, h:48, x:10, y:100, speechImg:'img/speech9.png'},
-    {img:'img/button10.png', w:48, h:48, x:150, y:100, speechImg:'img/speech10.png'},
-    {img:'img/button11.png', w:48, h:48, x:200, y:100, speechImg:'img/speech11.png'},
-    {img:'img/button12.png', w:48, h:48, x:250, y:100, speechImg:'img/speech12.png'},
-    {img:'img/button13.png', w:48, h:48, x:199, y:0, speechImg:'img/speech13.png'},
-    {img:'img/button14.png', w:48, h:48, x:10, y:56, speechImg:'img/speech14.png'},
-    {img:'img/button15.png', w:48, h:48, x:10, y:56, speechImg:'img/speech15.png'},
-    {img:'img/button16.png', w:48, h:48, x:10, y:0, speechImg:'img/speech16.png'},
-    {img:'img/button17.png', w:48, h:48, x:150, y:0, speechImg:'img/speech17.png'},
-    {img:'img/button18.png', w:48, h:48, x:199, y:0, speechImg:'img/speech18.png'},
-    {img:'img/button19.png', w:48, h:48, x:10, y:56, speechImg:'img/speech19.png'},
-    {img:'img/button20.png', w:48, h:48, x:10, y:56, speechImg:'img/speech20.png'},
+    {img:'img/button1.png', w:89.5, h:48, x:b_gap, y:0, speechImg:'img/speech1.png'},
+    {img:'img/button2.png', w:48, h:48, x:(89.5*2)+b_gap, y:0, speechImg:'img/speech2.png'},
+    {img:'img/button3.png', w:48, h:48, x:(89.5*2)+(48*2)+b_gap, y:0, speechImg:'img/speech3.png'},
+    {img:'img/button4.png', w:48, h:48, x:(89.5*2)+(48*2)+(48*2)+b_gap, y:0, speechImg:'img/speech4.png'},
+    {img:'img/button4.png', w:48, h:48, x:b_gap, y:(48*2)+b_gap, speechImg:'img/speech5.png'},
+    {img:'img/button6.png', w:48, h:48, x:(48*2)+b_gap, y:(48*2)+b_gap, speechImg:'img/speech6.png'},
+    {img:'img/button7.png', w:48, h:48, x:(48*4)+b_gap, y:(48*2)+b_gap, speechImg:'img/speech7.png'},
+    {img:'img/button8.png', w:48, h:48, x:(48*6)+b_gap, y:(48*2)+b_gap, speechImg:'img/speech8.png'},
+    {img:'img/button9.png', w:48, h:48, x:(48*8)+b_gap, y:(48*2)+b_gap, speechImg:'img/speech9.png'},
+    {img:'img/button10.png', w:48, h:48, x:b_gap, y:(48*4)+b_gap, speechImg:'img/speech10.png'},
+    {img:'img/button11.png', w:48, h:48, x:(48*2)+b_gap, y:(48*4)+b_gap, speechImg:'img/speech11.png'},
+    {img:'img/button12.png', w:48, h:48, x:(48*4)+b_gap, y:(48*4)+b_gap, speechImg:'img/speech12.png'},
+    {img:'img/button13.png', w:48, h:48, x:(48*6)+b_gap, y:(48*4)+b_gap, speechImg:'img/speech13.png'},
+    {img:'img/button14.png', w:48, h:48, x:(48*8)+b_gap, y:(48*4)+b_gap, speechImg:'img/speech14.png'},
+    // {img:'img/button15.png', w:48, h:48, x:10, y:56, speechImg:'img/speech15.png'},
+    // {img:'img/button16.png', w:48, h:48, x:10, y:0, speechImg:'img/speech16.png'},
+    // {img:'img/button17.png', w:48, h:48, x:150, y:0, speechImg:'img/speech17.png'},
+    // {img:'img/button18.png', w:48, h:48, x:199, y:0, speechImg:'img/speech18.png'},
+    // {img:'img/button19.png', w:48, h:48, x:10, y:56, speechImg:'img/speech19.png'},
+    // {img:'img/button20.png', w:48, h:48, x:10, y:56, speechImg:'img/speech20.png'},
     // {img:'img/button5.png', w:78, h:78, x:0, y:0},
 ];
 
@@ -78,13 +79,12 @@ class GameScene extends Scene {
         this.playing = true;
         this.c = 0;
         this.people = [];
+        this.selectedPerson;
         this.score = 0;
         this.input = "";
         this.inputContainer = new PIXI.Container();
-        this.addChild(this.inputContainer);
         this.buttons();
-       
-
+    
         
         this.startButton = new PIXI.Sprite(startTexture);
         this.startButton.anchor.set(0.5);
@@ -165,8 +165,7 @@ class GameScene extends Scene {
 
         this.abtnextButton.on('pointerdown', function() {
             $this.removeChild($this.aboutContainer);
-    
-            });
+        });
 
 
 
@@ -209,8 +208,6 @@ class GameScene extends Scene {
         this.tweetButton.height = 50;
         this.tweetButton.on('pointerdown', function() {
             $this.submitCode();
-
-
         });
 
         this.cancelButton = new PIXI.Sprite(cancelTexture);
@@ -222,26 +219,34 @@ class GameScene extends Scene {
         this.cancelButton.normal = cancelTexture;
         this.cancelButton.over = cancelTextureOver;
         this.cancelButton.down = cancelTextureDown;
-        this.cancelButton.on('pointerdown', this.onButtonDown);
+        this.cancelButton.on('pointerdown', function() {
+            while($this.inputContainer.children[0]) { 
+                $this.inputContainer.removeChild($this.inputContainer.children[0]); 
+            }
+            $this.input = "";
+        });
         this.cancelButton.on('pointerup', this.onButtonUp);
         this.cancelButton.on('pointerover', this.onButtonOver);
         this.cancelButton.on('pointerout', this.onButtonOut);
-        this.addChild(this.cancelButton);
+        // this.addChild(this.cancelButton);
 
         this.speechbg = new PIXI.Sprite.from('img/speechbg.png');
         this.speechbg.x = 350;
         this.speechbg.y = 500;
         this.autoresize = true;
-        this.addChild(this.speechbg);
+        // this.addChild(this.speechbg);
 
         this.speechContainer.addChild(this.speechbg);
         this.speechContainer.addChild(this.tweetButton);
-        this.speechContainer.addChild(this.cancelButton);    
+        this.speechContainer.addChild(this.cancelButton);
+        this.speechContainer.addChild(this.inputContainer);    
 
         this.manual1 = new PIXI.Sprite.from('img/manual1.png');
         this.manual1.anchor.set(0.5);
         this.manual1.x = 1150;
         this.manual1.y = 640;
+        this.manual1.width = 250;
+        this.manual1.height = 312;
         this.autoresize = true;
         this.addChild(this.manual1);
 
@@ -412,12 +417,10 @@ class GameScene extends Scene {
 
         this.startgameButton.on('pointerdown', function() {
             $this.removeChild($this.popup3Container);
-            $this.startTimer(3);
+            $this.startTimer(3000);
             $this.spawn();
             $this.addChild($this.speechContainer)
-
-
-            });
+        });
 
         this.popuploseContainer = new PIXI.Container();
         this.popuplose = new PIXI.Graphics();
@@ -512,25 +515,26 @@ class GameScene extends Scene {
 
 
     submitCode() {
-        for(var p of this.people) {
-            if(this.input == p.type) {
+        if(!this.selectedPerson) return;
+        // for(var p of this.people) {
+            if(this.input == this.selectedPerson.type) {
                 // alert('cool');
-                console.log(p)
-                this.removeChild(p.sprite);
-                this.people.splice(p.i, 1);
+                console.log(this.selectedPerson)
+                this.removeChild(this.selectedPerson.sprite);
+                // this.people.splice(p.i, 1);
                 this.score += 8;
                 this.scoreText.text = this.score;
+                this.selectedPerson = null;
                 this.spawn();
-                break;
             } else {
                 alert('nope');
 
                 this.score -= 3;
                 this.scoreText.text = this.score;
             }
-        }
-
+        // }
         while(this.inputContainer.children[0]) { 
+
             this.inputContainer.removeChild(this.inputContainer.children[0]); 
         }
 
@@ -555,15 +559,15 @@ class GameScene extends Scene {
                 timer = duration;
                 console.log("foofoof");
                 console.log($this.score);
-            if ( $this.score < 88) {
-                console.log("score correct");
-                $this.addChild($this.popuploseContainer);
-                
-            }
+                if ( $this.score < 88) {
+                    console.log("score correct");
+                    $this.addChild($this.popuploseContainer);
+                    
+                }
 
-            if (this.timerText < 0 && this.score > 88) {
-            $this.addChild($this.popupwinContainer);
-            }
+                if (this.timerText < 0 && this.score > 88) {
+                    $this.addChild($this.popupwinContainer);
+                }
             }
         }, 1000);
 
@@ -578,8 +582,8 @@ class GameScene extends Scene {
             
             button.x = buttons[i].x;
             button.y = 500 + buttons[i].y;
-            button.w = 36
-            button.h = 36
+            button.w = 24
+            button.h = 24
 
           
             button.number = i;
@@ -593,9 +597,11 @@ class GameScene extends Scene {
 
     typeCode(button) {
         if(this.input.length > 4) return;
-        const b = new PIXI.Sprite.from(buttons[button.number].img);
-        b.x = 30+(this.input.length * buttons[button.number].w);
-        b.y = 0;
+        const b = new PIXI.Sprite.from(buttons[button.number].speechImg);
+        b.x = this.speechbg.x + (this.input.length * 48) + 100;
+        b.y = this.speechbg.y + (this.speechbg.height/2) - 40;
+        b.width = 48;
+        b.height = 48;
         this.inputContainer.addChild(b);
         this.input+=button.number;
         console.log(this.input);
@@ -618,16 +624,20 @@ class GameScene extends Scene {
             var choice = ["a","b","c","d"];
         var c = coordinates[Math.floor(Math.random() * 8)];
         var myc =  choice[Math.floor(Math.random() * 4)];
-         console.log(myc);
-        var p = new Person(c[0],c[1], codes[Math.floor(Math.random()*codes.length)], this.people.length, myc, width, height);
-        //this.Person.interactive = true;
-        //this.Person.buttonMode = true;
+        console.log(myc);
+        var p = new Person(c[0],c[1], this.people.length, myc, width, height);
         
     
         console.log(p);
         var s = p.create();
         this.addChild(s);
         this.people.push(p);
+        var $this = this;
+
+        s.on('pointerdown', function() {
+            // alert(p.type)
+            $this.selectedPerson = p;
+        });
     }
 
 
