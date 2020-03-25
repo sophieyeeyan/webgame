@@ -1,12 +1,12 @@
 class Person {
 
-	constructor(x, y, type, i, character, w, h) {
+	constructor(x, y, i, character, w, h) {
 		this.x = x;
 		this.y = y;
 		this.i = i;
 		this.w = w;
 		this.h = h;
-		this.type = type;
+		this.type;
 		this.sprite;
 		this.character = character;
 	}
@@ -18,45 +18,49 @@ class Person {
 			console.log("grrr");
 			const texture = PIXI.Texture.from('img/character_r.png');
 			this.sprite = new PIXI.Sprite(texture);
-		this.sprite.x = this.x;
-    	this.sprite.y = this.y;
-    	this.sprite.width = this.w;
-    	this.sprite.height = this.h;
-    	return this.sprite;
+			this.sprite.x = this.x;
+	    	this.sprite.y = this.y;
+	    	this.sprite.width = this.w;
+	    	this.sprite.height = this.h;
+	    	this.type = '0112';
 		}
 		if(this.character ==  "b"){
 			const texture = PIXI.Texture.from('img/character_n3.png');
-				console.log("geeeeee");
+			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
-		this.sprite.x = this.x;
-    	this.sprite.y = this.y;
-    	this.sprite.width = this.w;
-    	this.sprite.height = this.h;
-    	return this.sprite;
+			this.sprite.x = this.x;
+	    	this.sprite.y = this.y;
+	    	this.sprite.width = this.w;
+	    	this.sprite.height = this.h;
+	    	this.type = '012';
 		}
 
 		if(this.character ==  "c"){
 			const texture = PIXI.Texture.from('img/character_n3.png');
-				console.log("geeeeee");
+			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
-		this.sprite.x = this.x;
-    	this.sprite.y = this.y;
-    	this.sprite.width = this.w;
-    	this.sprite.height = this.h;
-    	return this.sprite;
+			this.sprite.x = this.x;
+	    	this.sprite.y = this.y;
+	    	this.sprite.width = this.w;
+	    	this.sprite.height = this.h;
+	    	this.type = '012';
 		}
 
 		if(this.character ==  "d"){
 			const texture = PIXI.Texture.from('img/character_n3.png');
-				console.log("geeeeee");
+			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
-		this.sprite.x = this.x;
-    	this.sprite.y = this.y;
-    	this.sprite.width = this.w;
-    	this.sprite.height = this.h;
-    	return this.sprite;
+			this.sprite.x = this.x;
+	    	this.sprite.y = this.y;
+	    	this.sprite.width = this.w;
+	    	this.sprite.height = this.h;
+	    	this.type = '012';
 		}
 
+		this.sprite.interactive = true;
+        this.sprite.buttonMode = true;
+
+        return this.sprite;
 		
 	}
 
