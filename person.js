@@ -1,4 +1,16 @@
+//const outlineFilterBlue = new PIXI.filters.OutlineFilter(2, 0x99ff99);
+//const outlineFilterRed = new PIXI.filters.GlowFilter(15, 2, 1, 0xff9999, 0.5);
+
+//function filterOn() {
+  //  this.filters = [outlineFilterRed];
+//}
+
+//function filterOff() {
+ //   this.filters = [outlineFilterBlue];
+//}
+
 class Person {
+
 
 	constructor(x, y, i, character, w, h) {
 		this.x = x;
@@ -10,6 +22,8 @@ class Person {
 		this.sprite;
 		this.character = character;
 	}
+
+
 
 	create() {
 		//const texture = PIXI.Texture.from('img/character_n2.png');
@@ -59,6 +73,9 @@ class Person {
 
 		this.sprite.interactive = true;
         this.sprite.buttonMode = true;
+        //this.sprite.on('pointerover', filterOn)
+        //this.sprite.on('pointerout', filterOff);
+        //this.filterOff.call(sprite);
 
         return this.sprite;
 		
