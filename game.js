@@ -4,22 +4,22 @@ const buttons = [
     {img:'img/button2.png', w:72, h:72, x:134+b_gap, y:0, speechImg:'img/speech2.png'},
     {img:'img/button3.png', w:72, h:72, x:134+72+b_gap, y:0, speechImg:'img/speech3.png'},
     {img:'img/button4.png', w:72, h:72, x:134+72+72+b_gap, y:0, speechImg:'img/speech4.png'},
-    {img:'img/button5.png', w:72, h:72, x:b_gap, y:72+b_gap, speechImg:'img/speech5.png'},
-    {img:'img/button6.png', w:72, h:72, x:72+b_gap, y:72+b_gap, speechImg:'img/speech6.png'},
-    {img:'img/button7.png', w:72, h:72, x:(72*2)+b_gap, y:72+b_gap, speechImg:'img/speech7.png'},
-    {img:'img/button8.png', w:72, h:72, x:(72*3)+b_gap, y:72+b_gap, speechImg:'img/speech8.png'},
-    {img:'img/button9.png', w:72, h:72, x:(72*4)+b_gap, y:72+b_gap, speechImg:'img/speech9.png'},
-    {img:'img/button10.png', w:72, h:72, x:b_gap, y:(72*2)+b_gap, speechImg:'img/speech10.png'},
-    {img:'img/button11.png', w:72, h:72, x:72+b_gap, y:(72*2)+b_gap, speechImg:'img/speech11.png'},
-    {img:'img/button12.png', w:72, h:72, x:(72*2)+b_gap, y:(72*2)+b_gap, speechImg:'img/speech12.png'},
-    {img:'img/button13.png', w:72, h:72, x:(72*3)+b_gap, y:(72*2)+b_gap, speechImg:'img/speech13.png'},
-    {img:'img/button14.png', w:72, h:72, x:(72*4)+b_gap, y:(72*2)+b_gap, speechImg:'img/speech14.png'},
-    {img:'img/button15.png', w:72, h:72, x:(72*4)+b_gap, y:(72*3)+b_gap, speechImg:'img/speech15.png'},
-    {img:'img/button16.png', w:72, h:72, x:b_gap, y:(72*3)+b_gap, speechImg:'img/speech16.png'},
-    {img:'img/button17.png', w:72, h:72, x:72+b_gap, y:(72*3)+b_gap, speechImg:'img/speech17.png'},
-    {img:'img/button18.png', w:72, h:72, x:(72*2)+b_gap, y:(72*3)+b_gap, speechImg:'img/speech18.png'},
-    {img:'img/button19.png', w:72, h:72, x:(72*3)+b_gap, y:(72*3)+b_gap, speechImg:'img/speech19.png'},
-    {img:'img/button20.png', w:72, h:72, x:(72*4)+b_gap, y:(72*3)+b_gap, speechImg:'img/speech20.png'},
+    {img:'img/button5.png', w:72, h:72, x:b_gap, y:60+b_gap, speechImg:'img/speech5.png'},
+    {img:'img/button6.png', w:72, h:72, x:72+b_gap, y:60+b_gap, speechImg:'img/speech6.png'},
+    {img:'img/button7.png', w:72, h:72, x:(72*2)+b_gap, y:60+b_gap, speechImg:'img/speech7.png'},
+    {img:'img/button8.png', w:72, h:72, x:(72*3)+b_gap, y:60+b_gap, speechImg:'img/speech8.png'},
+    {img:'img/button9.png', w:72, h:72, x:(72*4)+b_gap, y:60+b_gap, speechImg:'img/speech9.png'},
+    {img:'img/button10.png', w:72, h:72, x:b_gap, y:(65*2)+b_gap, speechImg:'img/speech10.png'},
+    {img:'img/button11.png', w:72, h:72, x:72+b_gap, y:(65*2)+b_gap, speechImg:'img/speech11.png'},
+    {img:'img/button12.png', w:72, h:72, x:(72*2)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech12.png'},
+    {img:'img/button13.png', w:72, h:72, x:(72*3)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech13.png'},
+    {img:'img/button14.png', w:72, h:72, x:(72*4)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech14.png'},
+    {img:'img/button15.png', w:72, h:72, x:(72*4)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech15.png'},
+    {img:'img/button16.png', w:72, h:72, x:b_gap, y:(70*3)+b_gap, speechImg:'img/speech16.png'},
+    {img:'img/button17.png', w:72, h:72, x:72+b_gap, y:(70*3)+b_gap, speechImg:'img/speech17.png'},
+    {img:'img/button18.png', w:72, h:72, x:(72*2)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech18.png'},
+    {img:'img/button19.png', w:72, h:72, x:(72*3)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech19.png'},
+    {img:'img/button20.png', w:72, h:72, x:(72*4)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech20.png'},
 ];
 
 const codes = [
@@ -211,6 +211,21 @@ class GameScene extends Scene {
 
         this.cancelButton = new PIXI.Sprite(cancelTexture);
         this.cancelButton.anchor.set(0.5);
+        this.cancelButton.x = 385;
+        this.cancelButton.y = 525;
+        this.cancelButton.interactive = true;
+        this.cancelButton.buttonMode = true;
+        this.cancelButton.normal = cancelTexture;
+        this.cancelButton.over = cancelTextureOver;
+        this.cancelButton.down = cancelTextureDown;
+        this.cancelButton.on('pointerdown', function() {
+            while($this.inputContainer.children[0]) { 
+                $this.inputContainer.removeChild($this.inputContainer.children[0]); 
+            }
+            $this.input = "";
+        });
+        this.cancelButton = new PIXI.Sprite(cancelTexture);
+        this.cancelButton.anchor.set(0.5);
         this.cancelButton.x = 410;
         this.cancelButton.y = 525;
         this.cancelButton.interactive = true;
@@ -224,11 +239,6 @@ class GameScene extends Scene {
             }
             $this.input = "";
         });
-        this.cancelButton.on('pointerup', this.onButtonUp);
-        this.cancelButton.on('pointerover', this.onButtonOver);
-        this.cancelButton.on('pointerout', this.onButtonOut);
-        // this.addChild(this.cancelButton);
-
         this.speechbg = new PIXI.Sprite.from('img/speechbg.png');
         this.speechbg.x = 375;
         this.speechbg.y = 500;
@@ -525,25 +535,29 @@ class GameScene extends Scene {
                 this.scoreText.text = this.score;
                 this.selectedPerson = null;
                 this.spawn();
-
+                this.PIXI.sound.add('correct', 'sound/correct.mp3');
+                this.PIXI.sound.play('correct');
 
             } else {
-                alert('nope');
+                //alert('nope');
 
                 this.score -= 3;
                 this.scoreText.text = this.score;
                 this.poop = new PIXI.Sprite.from('img/poop.png');
-                this.poop.x = 400;
-                this.poop.y = 400;
+                this.poop.width = 115;
+                this.poop.height = 115;
+                this.poop.x = 625 ;
+                this.poop.y = 600;
                 this.autoresize = true;
-                this.addchild(this.poop)
+                this.addChild(this.poop);
+                this.PIXI.sound.add('fail', 'sound/fail.mp3');
+                this.PIXI.sound.play('fail');
 
-   
             }
         // }
-        while(this.inputContainer.children[0]) { 
 
-
+            while(this.inputContainer.children[0]) { 
+            this.inputContainer.removeChild(this.inputContainer.children[0]); 
         }
 
         this.input = "";
@@ -590,7 +604,10 @@ class GameScene extends Scene {
             
             button.x = buttons[i].x;
             button.y = 500 + buttons[i].y;
+            button.w = 36
+            button.h = 36
 
+          
             button.number = i;
             this.addChild(button);
             button.on('pointerdown', function() {
