@@ -114,6 +114,9 @@ class GameScene extends Scene {
         this.pauseButton.on('pointerover', this.onButtonOver);
         this.pauseButton.on('pointerout', this.onButtonOut);
         this.addChild(this.pauseButton);
+         this.pauseButton.on('pointerdown', function() {
+            $this.addChild($this.pauseContainer);
+            });
 
         this.aboutButton = new PIXI.Sprite(aboutTexture);
         this.aboutButton.anchor.set(0.5);
@@ -268,14 +271,14 @@ class GameScene extends Scene {
         // this.autoresize = true;
         this.addChild(this.cyber);
 
-        this.side = new PIXI.Sprite.from('img/side.png');
-        this.side.anchor.set(0.5);
-        this.side.width = 30;
-        this.side.height = 300;
-        this.side.x = 1285;
-        this.side.y = 150;
+        //this.side = new PIXI.Sprite.from('img/side.png');
+        //this.side.anchor.set(0.5);
+        //this.side.width = 30;
+        //this.side.height = 300;
+        //this.side.x = 1285;
+        //this.side.y = 150;
         //this.autoresize = true;
-        this.addChild(this.side);
+        //this.addChild(this.side);
 
  // 
         
@@ -535,9 +538,6 @@ class GameScene extends Scene {
                 this.scoreText.text = this.score;
                 this.selectedPerson = null;
                 this.spawn();
-                this.PIXI.sound.add('correct', 'sound/correct.mp3');
-                this.PIXI.sound.play('correct');
-
             } else {
                 //alert('nope');
 
@@ -550,13 +550,15 @@ class GameScene extends Scene {
                 this.poop.y = 600;
                 this.autoresize = true;
                 this.addChild(this.poop);
+                if (i<2) {
+                    $this.removeChild($this.poop);
+                };
                 this.PIXI.sound.add('fail', 'sound/fail.mp3');
                 this.PIXI.sound.play('fail');
-
             }
         // }
 
-            while(this.inputContainer.children[0]) { 
+        while(this.inputContainer.children[0]) { 
             this.inputContainer.removeChild(this.inputContainer.children[0]); 
         }
 
@@ -642,9 +644,10 @@ class GameScene extends Scene {
             [794, 234],
             [830, 294],
             [760, 169],
+            [767, 350],
             [859,366]];
             var choice = ["a","b","c","d"];
-        var c = coordinates[Math.floor(Math.random() * 8)];
+        var c = coordinates[Math.floor(Math.random() * 9)];
         var myc =  choice[Math.floor(Math.random() * 4)];
         console.log(myc);
         var p = new Person(c[0],c[1], this.people.length, myc, width, height);
