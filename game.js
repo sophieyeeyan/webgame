@@ -118,6 +118,18 @@ class GameScene extends Scene {
             $this.addChild($this.pauseContainer);
             });
 
+        this.pauseContainer = new PIXI.Container();
+
+        this.rect = new PIXI.Graphics();
+        this.rect.beginFill(0xEAC21D);
+        this.rect.drawRect(0, 0, 1300, 800);
+        this.rect.alpha = 0.75;
+        this.rect.endFill();
+        this.addChild(this.rect);
+
+        this.pauseContainer.addChild(this.rect);
+    
+
         this.aboutButton = new PIXI.Sprite(aboutTexture);
         this.aboutButton.anchor.set(0.5);
         this.aboutButton.x = 1200;
@@ -164,12 +176,10 @@ class GameScene extends Scene {
         
         this.aboutContainer.addChild(this.aboutbg);
         this.aboutContainer.addChild(this.abtnextButton);
-
         this.abtnextButton.on('pointerdown', function() {
             $this.removeChild($this.aboutContainer);
-        });
-
-
+        })
+        
 
         //testing adding text
         this.timerText = new PIXI.Text('03:00', style40);
