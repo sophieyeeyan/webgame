@@ -548,6 +548,8 @@ class GameScene extends Scene {
                 this.scoreText.text = this.score;
                 this.selectedPerson = null;
                 this.spawn();
+                this.PIXI.sound.add('correct', 'sound/correct.mp3');
+                this.PIXI.sound.play('correct');
             } else {
                 //alert('nope');
 
