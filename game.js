@@ -83,6 +83,9 @@ class GameScene extends Scene {
         this.input = "";
         this.inputContainer = new PIXI.Container();
         this.buttons();
+
+
+        PIXI.sound.add('fail', 'sound/fail.mp3');
     
         
         this.startButton = new PIXI.Sprite(startTexture);
@@ -441,7 +444,6 @@ class GameScene extends Scene {
             $this.removeChild($this.popup3Container);
             $this.startTimer(3000);
             $this.spawn();
-            $this.addChild($this.speechContainer)
         });
 
         this.popuploseContainer = new PIXI.Container();
@@ -537,6 +539,7 @@ class GameScene extends Scene {
 
 
     submitCode() {
+        const $this = this;
         if(!this.selectedPerson) return;
         // for(var p of this.people) {
             if(this.input == this.selectedPerson.type) {
@@ -548,8 +551,8 @@ class GameScene extends Scene {
                 this.scoreText.text = this.score;
                 this.selectedPerson = null;
                 this.spawn();
-                this.PIXI.sound.add('correct', 'sound/correct.mp3');
-                this.PIXI.sound.play('correct');
+                PIXI.sound.play('correct');
+                $this.removeChild($this.speechContainer)
             } else {
                 //alert('nope');
 
@@ -562,11 +565,12 @@ class GameScene extends Scene {
                 this.poop.y = 600;
                 this.autoresize = true;
                 this.addChild(this.poop);
-                if (i<2) {
+               
+                setTimeout(function() {
                     $this.removeChild($this.poop);
-                };
-                this.PIXI.sound.add('fail', 'sound/fail.mp3');
-                this.PIXI.sound.play('fail');
+                },2000)
+                
+                PIXI.sound.play('fail');
             }
         // }
 
@@ -673,6 +677,7 @@ class GameScene extends Scene {
 
         s.on('pointerdown', function() {
             // alert(p.type)
+            $this.addChild($this.speechContainer)
             $this.selectedPerson = p;
         });
     }
