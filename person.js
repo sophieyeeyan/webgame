@@ -1,13 +1,6 @@
-//const outlineFilterBlue = new PIXI.filters.OutlineFilter(2, 0x99ff99);
-//const outlineFilterRed = new PIXI.filters.GlowFilter(15, 2, 1, 0xff9999, 0.5);
+const outlineFilterBlue = new PIXI.filters.OutlineFilter(2, 0x99ff99);
+const outlineFilterRed = new PIXI.filters.GlowFilter(15, 2, 1, 0xff9999, 0.5);
 
-//function filterOn() {
-  //  this.filters = [outlineFilterRed];
-//}
-
-//function filterOff() {
- //   this.filters = [outlineFilterBlue];
-//}
 
 class Person {
 
@@ -73,8 +66,12 @@ class Person {
 
 		this.sprite.interactive = true;
         this.sprite.buttonMode = true;
-        //this.sprite.on('pointerover', filterOn)
-        //this.sprite.on('pointerout', filterOff);
+        this.sprite.on('pointerover', function() {
+        	this.filters = [outlineFilterRed];
+        })
+        this.sprite.on('pointerout', function() {
+        	this.filters = [outlineFilterBlue];
+        });
         //this.filterOff.call(sprite);
 
         return this.sprite;
