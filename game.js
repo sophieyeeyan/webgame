@@ -86,7 +86,7 @@ class GameScene extends Scene {
 
 
         PIXI.sound.add('fail', 'sound/fail.mp3');
-    
+        PIXI.sound.add('correct', 'sound/correct.mp3');
         
         this.startButton = new PIXI.Sprite(startTexture);
         this.startButton.anchor.set(0.5);
