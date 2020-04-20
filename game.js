@@ -444,6 +444,7 @@ class GameScene extends Scene {
             $this.removeChild($this.popup3Container);
             $this.startTimer(3000);
             $this.spawn();
+            $this.addChild($this.speechContainer)
         });
 
         this.popuploseContainer = new PIXI.Container();
@@ -551,8 +552,6 @@ class GameScene extends Scene {
                 this.scoreText.text = this.score;
                 this.selectedPerson = null;
                 this.spawn();
-                PIXI.sound.play('correct');
-                $this.removeChild($this.speechContainer)
             } else {
                 //alert('nope');
 
@@ -677,7 +676,6 @@ class GameScene extends Scene {
 
         s.on('pointerdown', function() {
             // alert(p.type)
-            $this.addChild($this.speechContainer)
             $this.selectedPerson = p;
         });
     }
