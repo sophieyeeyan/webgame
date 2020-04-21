@@ -549,7 +549,6 @@ class GameScene extends Scene {
                 // this.people.splice(p.i, 1);
                 this.score += 8;
                 this.scoreText.text = this.score;
-                this.selectedPerson = null;
                 this.spawn();
                 PIXI.sound.play('correct');
                 this.correctText = new PIXI.Text();
