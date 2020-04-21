@@ -10,7 +10,6 @@ class Person {
 		this.i = i;
 		this.w = w;
 		this.h = h;
-        this.messageIfCorrect = messageIfCorrect;
 		this.type;
 		this.sprite;
 		this.character = character;
