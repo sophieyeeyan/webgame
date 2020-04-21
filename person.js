@@ -4,13 +4,13 @@ const outlineFilterRed = new PIXI.filters.GlowFilter(15, 2, 1, 0xff9999, 0.5);
 
 class Person {
 
-
 	constructor(x, y, i, character, w, h) {
 		this.x = x;
 		this.y = y;
 		this.i = i;
 		this.w = w;
 		this.h = h;
+        this.messageIfCorrect = messageIfCorrect;
 		this.type;
 		this.sprite;
 		this.character = character;
@@ -20,7 +20,6 @@ class Person {
 
 	create() {
 		//const texture = PIXI.Texture.from('img/character_n2.png');
-		
 		if(this.character ==  "a"){
 			console.log("grrr");
 			const texture = PIXI.Texture.from('img/character1a.png');
@@ -30,6 +29,7 @@ class Person {
 	    	this.sprite.width = this.w;
 	    	this.sprite.height = this.h;
 	    	this.type = '012';
+	    	this.messageIfCorrect = "Unreasonable, foolish gov. Let’s act!"
 		}
 		if(this.character ==  "b"){
 			const texture = PIXI.Texture.from('img/character1b.png');
@@ -40,6 +40,8 @@ class Person {
 	        this.sprite.width = this.w;
 	    	this.sprite.height = this.h;
 	    	this.type = '012';
+	    	this.messageIfCorrect = "Unreasonable, foolish gov. Let’s act!"
+
 		}
 
 		if(this.character ==  "c"){
@@ -51,6 +53,8 @@ class Person {
 	        this.sprite.width = this.w;
 	    	this.sprite.height = this.h;
 	    	this.type = '0445';
+	    	this.messageIfCorrect = " Help, friends! Help! Support the team! 🙏"
+
 		}
 
 		if(this.character ==  "d"){
@@ -62,6 +66,8 @@ class Person {
 	        this.sprite.width = this.w;
 	    	this.sprite.height = this.h;
 	    	this.type = '0112';
+	    	this.messageIfCorrect = " Help, friends! Help! Support the team! 🙏"
+
 		}
 
 		this.sprite.interactive = true;
@@ -75,7 +81,7 @@ class Person {
         //this.filterOff.call(sprite);
 
         return this.sprite;
-		
+
 	}
 
 }
