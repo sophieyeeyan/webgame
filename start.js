@@ -49,8 +49,6 @@ class StartScene extends Scene {
         this.cover.height = 800;
         this.addChild(this.cover);
 
-        animate();
-
 
     }
 
@@ -86,11 +84,7 @@ class StartScene extends Scene {
         this.texture = this.normal;
     }
 
-    animate(){
-        //render the stage
-        renderer.render(stage);
-        requestAnimationFrame(animate);
-    }
+    
 }
 
 
