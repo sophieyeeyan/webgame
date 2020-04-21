@@ -555,13 +555,13 @@ class GameScene extends Scene {
                 this.correctText = new PIXI.Text();
                 this.correctText.text = this.selectedPerson.messageIfCorrect;
                 this.correctText.x = (this.popup2Container.width/2) - (this.popup2Text.width/2);
-                this.popup2Text.y = (this.popup2Container.height/2) - (this.popup2Text.height/2);
+                this.correctText.y = (this.popup2Container.height/2) - (this.popup2Text.height/2);
                 this.addChild(this.correctText);
                 this.correctText.style.fontFamily = 'Courier';
                 this.correctText.style.fontSize = 20;
                 this.correctText.style.fill = 0x4A4879;
                 setTimeout(function() {
-                    $this.removeChild($this.poop);
+                    $this.removeChild($this.correctText);
                     $this.removeChild($this.speechContainer);
                 },2000)
 
