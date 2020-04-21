@@ -13,6 +13,7 @@ class Person {
 		this.type;
 		this.sprite;
 		this.character = character;
+		this.messageIfCorrect = this.messageIfCorrect;
 	}
 
 
@@ -51,7 +52,7 @@ class Person {
 	    	this.sprite.y = this.y;
 	        this.sprite.width = this.w;
 	    	this.sprite.height = this.h;
-	    	this.type = '0445';
+	    	this.type = '0334';
 	    	this.messageIfCorrect = " Help, friends! Help! Support the team! 🙏"
 
 		}
