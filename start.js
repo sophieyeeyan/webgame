@@ -1,8 +1,8 @@
-var abtnextTexture = PIXI.Texture.from('img/abtnext1.png');
-var abtnextTextureDown = PIXI.Texture.from('img/abtnext3.png');
-var abtnextTextureOver = PIXI.Texture.from('img/abtnext2.png');
+var startTexture = PIXI.Texture.from('img/start1.png');
+var startTextureDown = PIXI.Texture.from('img/start3.png');
+var startTextureOver = PIXI.Texture.from('img/start2.png');
 
-var starttexture = PIXI.Texture.fromVideo('vid/cover.mov');
+var covertexture = PIXI.Texture.fromVideo('vid/cover.mov');
 
 
 
@@ -22,22 +22,77 @@ class StartScene extends Scene {
 
     constructor() {
     	super();
-        this.cover = new PIXI.Sprite(starttexture);
+
+        var stage = new PIXI.Container();
+        this.startButton = new PIXI.Sprite(startTexture);
+        this.startButton.anchor.set(0.5);
+        this.startButton.x = 1100;
+        this.startButton.y = 27;
+        this.startButton.interactive = true;
+        this.startButton.buttonMode = true;
+        this.startButton.normal = startTexture;
+        this.startButton.over = startTextureOver;
+        this.startButton.down = startTextureDown;
+        this.startButton.on('pointerdown', this.onButtonDown);
+        this.startButton.on('pointerup', this.onButtonUp);
+        this.startButton.on('pointerover', this.onButtonOver);
+        this.startButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.startButton);
+        this.startButton.on('pointerdown', function() {
+            $this.scenesManager.goToScene('game')
+
+            });
+
+
+        this.cover = new PIXI.Sprite(covertexture);
         this.cover.width = 1300;
         this.cover.height = 800;
         this.addChild(this.cover);
 
-animate();
+        animate();
 
-//function animate(){
 
-    // render the stage
-    //renderer.render(stage);
+    }
 
-    //requestAnimationFrame(animate);
+     onButtonDown() {
+        this.isdown = true;
+        this.texture = this.down;
+        this.alpha = 1;
+    }
+
+    onButtonUp() {
+        this.isdown = false;
+        if (this.isOver) {
+            this.texture = this.over;
+        }
+        else {
+            this.texture = this.normal;
+        }
+    }
+
+    onButtonOver() {
+        this.isOver = true;
+        if (this.isdown) {
+            return;
+        }
+        this.texture = this.over;
+    }
+
+    onButtonOut() {
+        this.isOver = false;
+        if (this.isdown) {
+            return;
+        }
+        this.texture = this.normal;
+    }
+
+    animate(){
+        //render the stage
+        renderer.render(stage);
+        requestAnimationFrame(animate);
+    }
 }
 
-  }
 
 
 
