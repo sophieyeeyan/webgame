@@ -44,9 +44,9 @@ var okTexture = PIXI.Texture.from('img/ok1.png');
 var okTextureDown = PIXI.Texture.from('img/ok2.png');
 var okTextureOver = PIXI.Texture.from('img/ok3.png');
 
-var startgameTexture = PIXI.Texture.from('img/startgame1.png');
-var startgameTextureDown = PIXI.Texture.from('img/startgame2.png');
-var startgameTextureOver = PIXI.Texture.from('img/startgame2.png');
+var startgameTexture = PIXI.Texture.from('img/startpurple1.png');
+var startgameTextureDown = PIXI.Texture.from('img/startpurple2.png');
+var startgameTextureOver = PIXI.Texture.from('img/startpurple2.png');
 
 var cancelTexture = PIXI.Texture.from('img/cancel1.png');
 var cancelTextureDown = PIXI.Texture.from('img/cancel2.png');
