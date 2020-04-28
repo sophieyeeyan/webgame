@@ -1,6 +1,6 @@
 const b_gap = 10;
 const buttons = [
-    {img:'img/button1.png', w:134, h:72, x:b_gap, y:0, speechImg:'img/speech1.png'},
+    {img:'img/button1.png', w:134, h:72, x:b_gap, y:0, speechImg:'img/speech21.png'},
     {img:'img/button2.png', w:72, h:72, x:134+b_gap, y:0, speechImg:'img/speech2.png'},
     {img:'img/button3.png', w:72, h:72, x:134+72+b_gap, y:0, speechImg:'img/speech3.png'},
     {img:'img/button4.png', w:72, h:72, x:134+72+72+b_gap, y:0, speechImg:'img/speech4.png'},
