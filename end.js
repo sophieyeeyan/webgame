@@ -14,7 +14,7 @@ const styleXXXX = new PIXI.TextStyle({
     fill: 0x4A4879
 });
 
-class StartScene extends Scene {
+class StartScene extends Scene { 
 
     constructor() {
     	super();
