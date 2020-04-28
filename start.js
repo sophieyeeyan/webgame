@@ -83,7 +83,7 @@ class StartScene extends Scene {
         this.storyButton.on('pointerdown', function() {
             $this.removeChild($this.storyButton);
             $this.removeChild($this.onPlayVideo4);
-            $this.scenesManager.goToScene($this.game);
+            scenesManager.goToScene('game');
 
         });
 
@@ -199,8 +199,8 @@ class StartScene extends Scene {
             this.addChild(videoSprite4);
 
             setTimeout(function() {
-                     //$this.onetexture.BaseTexture.resource.source.pause();
                      $this.addChild($this.storyButton);
+                     $video2.pause()
                 },1000)
 
         }
