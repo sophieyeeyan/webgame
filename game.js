@@ -57,6 +57,9 @@ var abtnextTexture = PIXI.Texture.from('img/abtnext1.png');
 var abtnextTextureDown = PIXI.Texture.from('img/abtnext3.png');
 var abtnextTextureOver = PIXI.Texture.from('img/abtnext2.png');
 
+let imageMode = PIXI.SCALE_MODES.LINEAR;
+
+
 const style40 = new PIXI.TextStyle({
     fontSize: 40,
     fontFamily: 'Courier',
@@ -285,46 +288,34 @@ class GameScene extends Scene {
         // this.autoresize = true;
         this.addChild(this.cyber);
 
-        //this.side = new PIXI.Sprite.from('img/side.png');
-        //this.side.anchor.set(0.5);
-        //this.side.width = 30;
-        //this.side.height = 300;
-        //this.side.x = 1285;
-        //this.side.y = 150;
-        //this.autoresize = true;
-        //this.addChild(this.side);
-
- // 
+        //Tutotial//////////////////////////////////////////////////////////////////////////////////////////////
         
         this.popup1Container = new PIXI.Container();
         this.addChild(this.popup1Container)
         this.popup1 = new PIXI.Graphics();
         this.popup1.lineStyle(2, 0xFF00FF, 1);
         this.popup1.beginFill(0xFFFFFF, 1);
-        this.popup1.drawRoundedRect(0, 0, 200, 150, 16);
+        this.popup1.drawRoundedRect(0, 0, 350, 350, 16);
         this.popup1.endFill();
         this.popup1Container.addChild(this.popup1);
 
-        this.popup1Text = new PIXI.Text();
-        this.popup1Text.text = "Select a\ncharacter", style20;
-        this.popup1Text.x = (this.popup1Container.width/2) - (this.popup1Text.width/2);;
-        this.popup1Text.y = (this.popup1Container.height/2) - (this.popup1Text.height/2);
-        this.addChild(this.popup1Text);
-        this.popup1Text.style.fontFamily = 'Courier';
-        this.popup1Text.style.fontSize = 20;
-        this.popup1Text.style.fill = 0x4A4879;
-
-        this.popup1Container.addChild(this.popup1Text);
+        this.popup1bg = new PIXI.Sprite.fromImage('img/t1.png', true, imageMode);
+        this.popup1bg.anchor.set(0.5, 0.5);
+        this.popup1bg.x = (this.popup1Container.width/2);
+        this.popup1bg.y = (this.popup1Container.height/2) - 20;
+        this.popup1bg.scale.set(0.25);
+        this.popup1bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup1bg);
 
 
-
-        this.popup1Container.position.x = 900;
-        this.popup1Container.position.y = 200;
+        this.popup1Container.position.x = 500;
+        this.popup1Container.position.y = 275;
 
         this.okButton = new PIXI.Sprite(okTexture);
         this.okButton.anchor.set(0.5);
         this.okButton.x = (this.popup1Container.width/2);
-        this.okButton.y = (this.popup1Container.height/2) + 50;
+        this.okButton.y = (this.popup1Container.height/2) + 130;
         this.okButton.interactive = true;
         this.okButton.buttonMode = true;
         this.okButton.normal = okTexture;
@@ -336,6 +327,7 @@ class GameScene extends Scene {
         this.okButton.on('pointerout', this.onButtonOut);
         this.addChild(this.okButton);
 
+        this.popup1Container.addChild(this.popup1bg);
         this.popup1Container.addChild(this.okButton);
 
         this.okButton.on('pointerdown', function() {
@@ -349,28 +341,27 @@ class GameScene extends Scene {
         this.popup2 = new PIXI.Graphics();
         this.popup2.lineStyle(2, 0xFF00FF, 1);
         this.popup2.beginFill(0xFFFFFF, 1);
-        this.popup2.drawRoundedRect(0, 0, 300, 200, 16);
+        this.popup2.drawRoundedRect(0, 0, 350, 350, 16);
         this.popup2.endFill();
         this.popup2Container.addChild(this.popup2);
 
-        this.popup2Text = new PIXI.Text();
-        this.popup2Text.text = "Based on this manual,\ncreate a tweet for the\ncharacter with the \nsequence";
-        this.popup2Text.x = (this.popup2Container.width/2) - (this.popup2Text.width/2);
-        this.popup2Text.y = (this.popup2Container.height/2) - (this.popup2Text.height/2);
-        this.addChild(this.popup2Text);
-        this.popup2Text.style.fontFamily = 'Courier';
-        this.popup2Text.style.fontSize = 20;
-        this.popup2Text.style.fill = 0x4A4879;
+        this.popup2bg = new PIXI.Sprite.fromImage('img/t2.png', true, imageMode);
+        this.popup2bg.anchor.set(0.5, 0.5);
+        this.popup2bg.x = (this.popup2Container.width/2);
+        this.popup2bg.y = (this.popup2Container.height/2) - 20;
+        this.popup2bg.scale.set(0.25);
+        this.popup2bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup2bg);
 
-        this.popup2Container.addChild(this.popup2Text);
 
-        this.popup2Container.position.x = 700;
-        this.popup2Container.position.y = 480;
+        this.popup2Container.position.x = 500;
+        this.popup2Container.position.y = 275;
 
         this.okButton = new PIXI.Sprite(okTexture);
         this.okButton.anchor.set(0.5);
         this.okButton.x = (this.popup2Container.width/2);
-        this.okButton.y = (this.popup2Container.height/2) + 55;
+        this.okButton.y = (this.popup2Container.height/2) + 130;
         this.okButton.interactive = true;
         this.okButton.buttonMode = true;
         this.okButton.normal = okTexture;
@@ -382,6 +373,7 @@ class GameScene extends Scene {
         this.okButton.on('pointerout', this.onButtonOut);
         this.addChild(this.okButton);
 
+        this.popup2Container.addChild(this.popup2bg);
         this.popup2Container.addChild(this.okButton);
 
         this.okButton.on('pointerdown', function() {
@@ -389,15 +381,262 @@ class GameScene extends Scene {
             $this.addChild($this.popup3Container);
 
             });
-
+        ///////////////////////////////////////////////
 
         this.popup3Container = new PIXI.Container();
         this.popup3 = new PIXI.Graphics();
         this.popup3.lineStyle(2, 0xFF00FF, 1);
         this.popup3.beginFill(0xFFFFFF, 1);
-        this.popup3.drawRoundedRect(0, 0, 400, 300, 16);
+        this.popup3.drawRoundedRect(0, 0, 350, 350, 16);
         this.popup3.endFill();
         this.popup3Container.addChild(this.popup3);
+
+        this.popup3bg = new PIXI.Sprite.fromImage('img/t3.png', true, imageMode);
+        this.popup3bg.anchor.set(0.5, 0.5);
+        this.popup3bg.x = (this.popup2Container.width/2);
+        this.popup3bg.y = (this.popup2Container.height/2) - 20;
+        this.popup3bg.scale.set(0.25);
+        this.popup3bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup3bg);
+
+
+        this.popup3Container.position.x = 500;
+        this.popup3Container.position.y = 275;
+
+        this.okButton = new PIXI.Sprite(okTexture);
+        this.okButton.anchor.set(0.5);
+        this.okButton.x = (this.popup3Container.width/2);
+        this.okButton.y = (this.popup3Container.height/2) + 130;
+        this.okButton.interactive = true;
+        this.okButton.buttonMode = true;
+        this.okButton.normal = okTexture;
+        this.okButton.over = okTextureOver;
+        this.okButton.down = okTextureDown;
+        this.okButton.on('pointerdown', this.onButtonDown);
+        this.okButton.on('pointerup', this.onButtonUp);
+        this.okButton.on('pointerover', this.onButtonOver);
+        this.okButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.okButton);
+
+        this.popup3Container.addChild(this.popup3bg);
+        this.popup3Container.addChild(this.okButton);
+
+        this.okButton.on('pointerdown', function() {
+            $this.removeChild($this.popup3Container);
+            $this.addChild($this.popup4Container);
+
+            });
+        /////////////////////////////////////////////////////
+
+        this.popup4Container = new PIXI.Container();
+        this.popup4 = new PIXI.Graphics();
+        this.popup4.lineStyle(2, 0xFF00FF, 1);
+        this.popup4.beginFill(0xFFFFFF, 1);
+        this.popup4.drawRoundedRect(0, 0, 350, 350, 16);
+        this.popup4.endFill();
+        this.popup4Container.addChild(this.popup4);
+
+        this.popup4bg = new PIXI.Sprite.fromImage('img/t4.png', true, imageMode);
+        this.popup4bg.anchor.set(0.5, 0.5);
+        this.popup4bg.x = (this.popup4Container.width/2);
+        this.popup4bg.y = (this.popup4Container.height/2) - 20;
+        this.popup4bg.scale.set(0.25);
+        this.popup4bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup4bg);
+
+
+        this.popup4Container.position.x = 500;
+        this.popup4Container.position.y = 275;
+
+        this.okButton = new PIXI.Sprite(okTexture);
+        this.okButton.anchor.set(0.5);
+        this.okButton.x = (this.popup4Container.width/2);
+        this.okButton.y = (this.popup4Container.height/2) + 130;
+        this.okButton.interactive = true;
+        this.okButton.buttonMode = true;
+        this.okButton.normal = okTexture;
+        this.okButton.over = okTextureOver;
+        this.okButton.down = okTextureDown;
+        this.okButton.on('pointerdown', this.onButtonDown);
+        this.okButton.on('pointerup', this.onButtonUp);
+        this.okButton.on('pointerover', this.onButtonOver);
+        this.okButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.okButton);
+
+        this.popup4Container.addChild(this.popup4bg);
+        this.popup4Container.addChild(this.okButton);
+
+        this.okButton.on('pointerdown', function() {
+            $this.removeChild($this.popup4Container);
+            $this.addChild($this.popup5Container);
+
+            });
+        ////////////////////////////////////////////
+
+        this.popup5Container = new PIXI.Container();
+        this.popup5 = new PIXI.Graphics();
+        this.popup5.lineStyle(2, 0xFF00FF, 1);
+        this.popup5.beginFill(0xFFFFFF, 1);
+        this.popup5.drawRoundedRect(0, 0, 350, 350, 16);
+        this.popup5.endFill();
+        this.popup5Container.addChild(this.popup5);
+
+        this.popup5bg = new PIXI.Sprite.fromImage('img/t5.png', true, imageMode);
+        this.popup5bg.anchor.set(0.5, 0.5);
+        this.popup5bg.x = (this.popup5Container.width/2);
+        this.popup5bg.y = (this.popup5Container.height/2) - 20;
+        this.popup5bg.scale.set(0.25);
+        this.popup5bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup5bg);
+
+
+        this.popup5Container.position.x = 500;
+        this.popup5Container.position.y = 275;
+
+        this.okButton = new PIXI.Sprite(okTexture);
+        this.okButton.anchor.set(0.5);
+        this.okButton.x = (this.popup5Container.width/2);
+        this.okButton.y = (this.popup5Container.height/2) + 130;
+        this.okButton.interactive = true;
+        this.okButton.buttonMode = true;
+        this.okButton.normal = okTexture;
+        this.okButton.over = okTextureOver;
+        this.okButton.down = okTextureDown;
+        this.okButton.on('pointerdown', this.onButtonDown);
+        this.okButton.on('pointerup', this.onButtonUp);
+        this.okButton.on('pointerover', this.onButtonOver);
+        this.okButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.okButton);
+
+        this.popup5Container.addChild(this.popup5bg);
+        this.popup5Container.addChild(this.okButton);
+
+        this.okButton.on('pointerdown', function() {
+            $this.removeChild($this.popup5Container);
+            $this.addChild($this.popup6Container);
+            $this.addChild($this.noticebg);
+            });
+        ////////////////////////////////////////////
+
+        this.noticebg = new PIXI.Sprite.fromImage('img/notice.png', true, imageMode);
+        this.noticebg.anchor.set(0.5, 0.5);
+        this.noticebg.x = 850;
+        this.noticebg.y = 173;
+        this.noticebg.scale.set(0.25);
+        this.noticebg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+
+        this.popup6Container = new PIXI.Container();
+        this.popup6 = new PIXI.Graphics();
+        this.popup6.lineStyle(2, 0xFF00FF, 1);
+        this.popup6.beginFill(0xFFFFFF, 1);
+        this.popup6.drawRoundedRect(0, 0, 350, 350, 16);
+        this.popup6.endFill();
+        this.popup6Container.addChild(this.popup6);
+
+        this.popup6bg = new PIXI.Sprite.fromImage('img/t6.png', true, imageMode);
+        this.popup6bg.anchor.set(0.5, 0.5);
+        this.popup6bg.x = (this.popup6Container.width/2);
+        this.popup6bg.y = (this.popup6Container.height/2) - 20;
+        this.popup6bg.scale.set(0.25);
+        this.popup6bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup6bg);
+
+        this.popup6Container.position.x = 500;
+        this.popup6Container.position.y = 275;
+
+        this.okButton = new PIXI.Sprite(okTexture);
+        this.okButton.anchor.set(0.5);
+        this.okButton.x = (this.popup6Container.width/2);
+        this.okButton.y = (this.popup6Container.height/2) + 130;
+        this.okButton.interactive = true;
+        this.okButton.buttonMode = true;
+        this.okButton.normal = okTexture;
+        this.okButton.over = okTextureOver;
+        this.okButton.down = okTextureDown;
+        this.okButton.on('pointerdown', this.onButtonDown);
+        this.okButton.on('pointerup', this.onButtonUp);
+        this.okButton.on('pointerover', this.onButtonOver);
+        this.okButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.okButton);
+
+        this.popup6Container.addChild(this.popup6bg);
+        this.popup6Container.addChild(this.okButton);
+
+        this.okButton.on('pointerdown', function() {
+            $this.removeChild($this.popup6Container);
+            $this.removeChild($this.noticebg);
+            $this.addChild($this.popup7Container);
+            $this.addChild($this.manualbg);
+            });
+        ////////////////////////////////////////////
+
+        this.manualbg = new PIXI.Sprite.fromImage('img/manual.png', true, imageMode);
+        this.manualbg.anchor.set(0.5, 0.5);
+        this.manualbg.x = 1155;
+        this.manualbg.y = 440;
+        this.manualbg.scale.set(0.25);
+        this.manualbg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+
+        this.popup7Container = new PIXI.Container();
+        this.popup7 = new PIXI.Graphics();
+        this.popup7.lineStyle(2, 0xFF00FF, 1);
+        this.popup7.beginFill(0xFFFFFF, 1);
+        this.popup7.drawRoundedRect(0, 0, 350, 350, 16);
+        this.popup7.endFill();
+        this.popup7Container.addChild(this.popup7);
+
+        this.popup7bg = new PIXI.Sprite.fromImage('img/t7.png', true, imageMode);
+        this.popup7bg.anchor.set(0.5, 0.5);
+        this.popup7bg.x = (this.popup7Container.width/2);
+        this.popup7bg.y = (this.popup7Container.height/2) - 20;
+        this.popup7bg.scale.set(0.25);
+        this.popup7bg.texture.baseTexture.mipmap = false;
+        this.autoresize = true;
+        this.addChild(this.popup7bg);
+
+        this.popup7Container.position.x = 500;
+        this.popup7Container.position.y = 275;
+
+        this.okButton = new PIXI.Sprite(okTexture);
+        this.okButton.anchor.set(0.5);
+        this.okButton.x = (this.popup7Container.width/2);
+        this.okButton.y = (this.popup7Container.height/2) + 130;
+        this.okButton.interactive = true;
+        this.okButton.buttonMode = true;
+        this.okButton.normal = okTexture;
+        this.okButton.over = okTextureOver;
+        this.okButton.down = okTextureDown;
+        this.okButton.on('pointerdown', this.onButtonDown);
+        this.okButton.on('pointerup', this.onButtonUp);
+        this.okButton.on('pointerover', this.onButtonOver);
+        this.okButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.okButton);
+
+        this.popup7Container.addChild(this.popup7bg);
+        this.popup7Container.addChild(this.okButton);
+
+        this.okButton.on('pointerdown', function() {
+            $this.removeChild($this.popup7Container);
+            $this.removeChild($this.manualbg);
+            $this.addChild($this.popup8Container);
+            });
+        ////////////////////////////////////////////
+
+
+
+        this.popup8Container = new PIXI.Container();
+        this.popup8 = new PIXI.Graphics();
+        this.popup8.lineStyle(2, 0xFF00FF, 1);
+        this.popup8.beginFill(0xFFFFFF, 1);
+        this.popup8.drawRoundedRect(0, 0, 350, 350, 16);
+        this.popup8.endFill();
+        this.popup8Container.addChild(this.popup8);
 
         this.goalText = new PIXI.Text();
         this.goalText.text = "Goal";
@@ -408,26 +647,26 @@ class GameScene extends Scene {
         this.goalText.style.fontSize = 30;
         this.goalText.style.fill = 0x4A4879;
 
-        this.popup3Container.addChild(this.goalText);
+        this.popup8Container.addChild(this.goalText);
 
-        this.popup3Text = new PIXI.Text();
-        this.popup3Text.text = "You have 3 minutes to \nearn 88 popularity points \nwith your tweets";
-        this.popup3Text.x = (this.popup3Container.width/2) - (this.popup3Text.width/2);
-        this.popup3Text.y = (this.popup3Container.height/2) - (this.popup3Text.height/2);
-        this.addChild(this.popup3Text);
-        this.popup3Text.style.fontFamily = 'Courier';
-        this.popup3Text.style.fontSize = 20;
-        this.popup3Text.style.fill = 0x4A4879;
+        this.popup8Text = new PIXI.Text();
+        this.popup8Text.text = "You have 3 minutes to \nearn 88 popularity points \nwith your tweets";
+        this.popup8Text.x = (this.popup8Container.width/2) - (this.popup8Text.width/2);
+        this.popup8Text.y = (this.popup8Container.height/2) - (this.popup8Text.height/2);
+        this.addChild(this.popup8Text);
+        this.popup8Text.style.fontFamily = 'Courier';
+        this.popup8Text.style.fontSize = 20;
+        this.popup8Text.style.fill = 0x4A4879;
 
-        this.popup3Container.addChild(this.popup3Text);
+        this.popup8Container.addChild(this.popup8Text);
 
-        this.popup3Container.position.x = 450;
-        this.popup3Container.position.y = 200;
+        this.popup8Container.position.x = 500;
+        this.popup8Container.position.y = 275;
 
         this.startgameButton = new PIXI.Sprite(startgameTexture);
         this.startgameButton.anchor.set(0.5);
-        this.startgameButton.x = (this.popup3Container.width/2);
-        this.startgameButton.y = (this.popup3Container.height/2) + 75;
+        this.startgameButton.x = (this.popup8Container.width/2);
+        this.startgameButton.y = (this.popup8Container.height/2) + 75;
         this.startgameButton.interactive = true;
         this.startgameButton.buttonMode = true;
         this.startgameButton.normal = startgameTexture;
@@ -439,13 +678,18 @@ class GameScene extends Scene {
         this.startgameButton.on('pointerout', this.onButtonOut);
         this.addChild(this.startgameButton);
 
-        this.popup3Container.addChild(this.startgameButton);
+        this.popup8Container.addChild(this.startgameButton);
 
         this.startgameButton.on('pointerdown', function() {
-            $this.removeChild($this.popup3Container);
+            $this.removeChild($this.popup8Container);
             $this.startTimer(3000);
             $this.spawn();
         });
+
+        //Tutotial//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        //Loseeeee////////////////////////////////////////////////////////////////////////////////////////
 
         this.popuploseContainer = new PIXI.Container();
         this.popuplose = new PIXI.Graphics();
