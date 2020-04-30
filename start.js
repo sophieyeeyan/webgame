@@ -10,6 +10,14 @@ var arrowTexture = PIXI.Texture.from('imgstart/arrow1.png');
 var arrowTextureDown = PIXI.Texture.from('imgstart/arrow2.png');
 var arrowTextureOver = PIXI.Texture.from('imgstart/arrow2.png');
 
+var infoTexture = PIXI.Texture.from('imgstart/about1.png');
+var infoTextureDown = PIXI.Texture.from('imgstart/about3.png');
+var infoTextureOver = PIXI.Texture.from('imgstart/about2.png');
+
+var rTexture = PIXI.Texture.from('imgstart/research1.png');
+var rTextureDown = PIXI.Texture.from('imgstart/research3.png');
+var rTextureOver = PIXI.Texture.from('imgstart/research2.png');
+
 const styleXXX = new PIXI.TextStyle({
     fontSize: 40,
     fontFamily: 'Courier',
@@ -28,6 +36,16 @@ class StartScene extends Scene {
         super();
         const $this = this;
 
+        this.thumb = new PIXI.Sprite.from('imgstart/thumbnail.png');
+        this.thumb.x = 0;
+        this.thumb.y = 0;
+        this.thumb.width = 1300;
+        this.thumb.height = 800;
+        this.autoresize = true;
+        this.addChild(this.thumb);
+
+
+
         this.entergameButton = new PIXI.Sprite(enterTexture);
         this.entergameButton.anchor.set(0.5);
         this.entergameButton.x = 650;
@@ -45,9 +63,46 @@ class StartScene extends Scene {
         this.entergameButton.on('pointerdown', function() {
             $this.onPlayVideo1();
             $this.removeChild($this.entergameButton);
-
         });
 
+        this.infoButton = new PIXI.Sprite(infoTexture);
+        this.infoButton.anchor.set(0.5);
+        this.infoButton.x = 920;
+        this.infoButton.y = 450;
+        this.infoButton.interactive = true;
+        this.infoButton.buttonMode = true;
+        this.infoButton.normal = infoTexture;
+        this.infoButton.over = infoTextureOver;
+        this.infoButton.down = infoTextureDown;
+        this.infoButton.on('pointerdown', this.onButtonDown);
+        this.infoButton.on('pointerup', this.onButtonUp);
+        this.infoButton.on('pointerover', this.onButtonOver);
+        this.infoButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.infoButton);
+        this.infoButton.on('pointerdown', function() {
+            //$this.onPlayVideo1();
+            //$this.removeChild($this.entergameButton);
+        });
+
+        this.reButton = new PIXI.Sprite(rTexture);
+        this.reButton.anchor.set(0.5);
+        this.reButton.x = 1100;
+        this.reButton.y = 450;
+        this.reButton.interactive = true;
+        this.reButton.buttonMode = true;
+        this.reButton.normal = rTexture;
+        this.reButton.over = rTextureOver;
+        this.reButton.down = rTextureDown;
+        this.reButton.on('pointerdown', this.onButtonDown);
+        this.reButton.on('pointerup', this.onButtonUp);
+        this.reButton.on('pointerover', this.onButtonOver);
+        this.reButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.reButton);
+        this.reButton.on('pointerdown', function() {
+            //$this.onPlayVideo1();
+            //$this.removeChild($this.entergameButton);
+        });
+    
         this.startgameButton = new PIXI.Sprite(yellowTexture);
         this.startgameButton.anchor.set(0.5);
         this.startgameButton.x = 650;
