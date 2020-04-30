@@ -5,7 +5,7 @@ scenesManager.create(1300, 800);
 
 var start = scenesManager.createScene('start', StartScene);
 var game = scenesManager.createScene('game', GameScene);
-var two = scenesManager.createScene('two', TwoScene);
+//var two = scenesManager.createScene('two', TwoScene);
 //var game3 = scenesManager.createScene('game3', Game3Scene);
 
 
