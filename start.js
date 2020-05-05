@@ -30,6 +30,7 @@ const styleXXXX = new PIXI.TextStyle({
     fill: 0x4A4879
 });
 
+
 class StartScene extends Scene {
 
     constructor() {
@@ -43,7 +44,6 @@ class StartScene extends Scene {
         this.thumb.height = 800;
         this.autoresize = true;
         this.addChild(this.thumb);
-
 
 
         this.entergameButton = new PIXI.Sprite(enterTexture);
@@ -243,6 +243,15 @@ class StartScene extends Scene {
             const onetexture = PIXI.Texture.from('vid/lv1.mp4');
 
             var video2 = onetexture.baseTexture.resource.source; 
+
+           // var startbgm = PIXI.sound.Sound.from({
+                //url: 'sound/story_bgm.mp3',
+                //loop: true,
+                //volume: 0.25
+            //});
+
+            //var lv1bgm = startbgm.play();
+
             //video.loop = 'loop';
             // create a new Sprite using the video texture (yes it's that easy)
             var videoSprite4 = new PIXI.Sprite(onetexture);
