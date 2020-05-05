@@ -21,7 +21,6 @@ class Person {
 	create() {
 		//const texture = PIXI.Texture.from('img/character_n2.png');
 		if(this.character ==  "a"){
-			console.log("grrr");
 			const texture = PIXI.Texture.from('img/character1a.png');
 			this.sprite = new PIXI.Sprite(texture);
 			this.sprite.x = this.x;
@@ -33,7 +32,6 @@ class Person {
 		}
 		if(this.character ==  "b"){
 			const texture = PIXI.Texture.from('img/character1b.png');
-			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
 			this.sprite.x = this.x;
 	    	this.sprite.y = this.y;
@@ -46,7 +44,6 @@ class Person {
 
 		if(this.character ==  "c"){
 			const texture = PIXI.Texture.from('img/character1c.png');
-			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
 			this.sprite.x = this.x;
 	    	this.sprite.y = this.y;
@@ -59,7 +56,6 @@ class Person {
 
 		if(this.character ==  "d"){
 			const texture = PIXI.Texture.from('img/character1d.png');
-			console.log("geeeeee");
 			this.sprite = new PIXI.Sprite(texture);
 			this.sprite.x = this.x;
 	    	this.sprite.y = this.y;
