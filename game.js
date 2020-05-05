@@ -1,29 +1,6 @@
-const b_gap = 10;
-const buttons = [
 
-    {img:'img/button1.png', w:134, h:72, x:b_gap, y:0, speechImg:'img/speech21.png'},
-    {img:'img/button2.png', w:72, h:72, x:134+b_gap, y:0, speechImg:'img/speech2.png'},
-    {img:'img/button3.png', w:72, h:72, x:134+72+b_gap, y:0, speechImg:'img/speech3.png'},
-    {img:'img/button4.png', w:72, h:72, x:134+72+72+b_gap, y:0, speechImg:'img/speech4.png'},
-    {img:'img/button5.png', w:72, h:72, x:b_gap, y:60+b_gap, speechImg:'img/speech5.png'},
-    {img:'img/button6.png', w:72, h:72, x:72+b_gap, y:60+b_gap, speechImg:'img/speech6.png'},
-    {img:'img/button7.png', w:72, h:72, x:(72*2)+b_gap, y:60+b_gap, speechImg:'img/speech7.png'},
-    {img:'img/button8.png', w:72, h:72, x:(72*3)+b_gap, y:60+b_gap, speechImg:'img/speech8.png'},
-    {img:'img/button9.png', w:72, h:72, x:(72*4)+b_gap, y:60+b_gap, speechImg:'img/speech9.png'},
-    {img:'img/button10.png', w:72, h:72, x:b_gap, y:(65*2)+b_gap, speechImg:'img/speech10.png'},
-    {img:'img/button11.png', w:72, h:72, x:72+b_gap, y:(65*2)+b_gap, speechImg:'img/speech11.png'},
-    {img:'img/button12.png', w:72, h:72, x:(72*2)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech12.png'},
-    {img:'img/button13.png', w:72, h:72, x:(72*3)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech13.png'},
-    {img:'img/button14.png', w:72, h:72, x:(72*4)+b_gap, y:(65*2)+b_gap, speechImg:'img/speech14.png'},
-    {img:'img/button15.png', w:72, h:72, x:(72*4)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech15.png'},
-    {img:'img/button16.png', w:72, h:72, x:b_gap, y:(70*3)+b_gap, speechImg:'img/speech16.png'},
-    {img:'img/button17.png', w:72, h:72, x:72+b_gap, y:(70*3)+b_gap, speechImg:'img/speech17.png'},
-    {img:'img/button18.png', w:72, h:72, x:(72*2)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech18.png'},
-    {img:'img/button19.png', w:72, h:72, x:(72*3)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech19.png'},
-    {img:'img/button20.png', w:72, h:72, x:(72*4)+b_gap, y:(70*3)+b_gap, speechImg:'img/speech20.png'},
-];
 
-const codes = [
+var codes = [
     "012",
     "0334",
     "0112",
@@ -57,20 +34,7 @@ var abtnextTexture = PIXI.Texture.from('img/abtnext1.png');
 var abtnextTextureDown = PIXI.Texture.from('img/abtnext3.png');
 var abtnextTextureOver = PIXI.Texture.from('img/abtnext2.png');
 
-let imageMode = PIXI.SCALE_MODES.LINEAR;
 
-
-const style40 = new PIXI.TextStyle({
-    fontSize: 40,
-    fontFamily: 'Courier',
-    fill: 0x4A4879
-});
-
-const style20 = new PIXI.TextStyle({
-    fontSize: 20,
-    fontFamily: 'Courier',
-    fill: 0x4A4879
-});
 
 class GameScene extends Scene {
 
@@ -87,11 +51,22 @@ class GameScene extends Scene {
         this.input = "";
         this.inputContainer = new PIXI.Container();
         this.buttons();
+        //this.achievement();
 
 
         PIXI.sound.add('fail', 'sound/fail.mp3');
         PIXI.sound.add('correct', 'sound/correct.mp3');
-        
+
+        var bgm = PIXI.sound.Sound.from({
+            url: 'sound/gamebgm.mp3',
+//preload: true,
+            loop: true,
+            volume: 0.25
+        }); 
+
+        var bgm1 = bgm.play();
+
+      
         this.startButton = new PIXI.Sprite(startTexture);
         this.startButton.anchor.set(0.5);
         this.startButton.x = 1100;
@@ -682,9 +657,10 @@ class GameScene extends Scene {
 
         this.startgameButton.on('pointerdown', function() {
             $this.removeChild($this.popup8Container);
-            $this.startTimer(3000);
+            $this.startTimer(10); //time
             $this.spawn();
         });
+
 
         //Tutotial//////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -747,6 +723,65 @@ class GameScene extends Scene {
             //$this.spawn();
 
             });
+
+        //Winnnnn////////////////////////////////////////////////////////////////////////////////////////
+
+        this.popupwinContainer = new PIXI.Container();
+        this.popupwin = new PIXI.Graphics();
+        this.popupwin.lineStyle(2, 0xFF00FF, 1);
+        this.popupwin.beginFill(0xFFFFFF, 1);
+        this.popupwin.drawRoundedRect(0, 0, 400, 300, 16);
+        this.popupwin.endFill();
+        this.popupwinContainer.addChild(this.popupwin);
+
+        this.win1Text = new PIXI.Text();
+        this.win1Text.text = "You Win";
+        this.win1Text.x = (this.popupwinContainer.width/2) - (this.win1Text.width/2);
+        this.lose1Text.y = 50;
+        this.addChild(this.win1Text);
+        this.win1Text.style.fontFamily = 'Courier';
+        this.win1Text.style.fontSize = 30;
+        this.win1Text.style.fill = 0x4A4879;
+
+        this.popupwinContainer.addChild(this.win1Text);
+
+        this.popupwinText = new PIXI.Text();
+        this.popupwinText.text = "Congratulations!\nYou have finished level 1!";
+        this.popupwinText.x = (this.popupwinContainer.width/2) - (this.popupwinText.width/2);
+        this.popupwinText.y = (this.popupwinContainer.height/2) - (this.popupwinText.height/2);
+        this.addChild(this.popupwinText);
+        this.popupwinText.style.fontFamily = 'Courier';
+        this.popupwinText.style.fontSize = 20;
+        this.popupwinText.style.fill = 0x4A4879;
+
+        this.popupwinContainer.addChild(this.popupwinText);
+
+        this.popupwinContainer.position.x = 450;
+        this.popupwinContainer.position.y = 200;
+
+        this.startgameButton = new PIXI.Sprite(startgameTexture);
+        this.startgameButton.anchor.set(0.5);
+        this.startgameButton.x = (this.popuploseContainer.width/2);
+        this.startgameButton.y = (this.popuploseContainer.height/2) + 75;
+        this.startgameButton.interactive = true;
+        this.startgameButton.buttonMode = true;
+        this.startgameButton.normal = startgameTexture;
+        this.startgameButton.over = startgameTextureOver;
+        this.startgameButton.down = startgameTextureDown;
+        this.startgameButton.on('pointerdown', this.onButtonDown);
+        this.startgameButton.on('pointerup', this.onButtonUp);
+        this.startgameButton.on('pointerover', this.onButtonOver);
+        this.startgameButton.on('pointerout', this.onButtonOut);
+        this.addChild(this.startgameButton);
+
+        this.popupwinContainer.addChild(this.startgameButton);
+
+        this.startgameButton.on('pointerdown', function() {
+            //$this.removeChild($this.popuploseContainer);
+            //$this.startTimer(60 * 3);
+            //$this.spawn();
+
+            });
        
     }
 
@@ -784,6 +819,7 @@ class GameScene extends Scene {
 
 
     submitCode() {
+
         const $this = this;
         if(!this.selectedPerson) return;
         // for(var p of this.people) {
@@ -809,7 +845,7 @@ class GameScene extends Scene {
                     $this.removeChild($this.correctText);
                     $this.removeChild($this.speechContainer);
                 },2000)
-
+                this.achievement();
 
             } else {
                 //alert('nope');
@@ -840,8 +876,58 @@ class GameScene extends Scene {
 
     }
 
+    achievement(){
+        const $this = this;
+        if(this.score > 40){
+            this.ach1 = new PIXI.Sprite.fromImage('img/acha.png', true, imageMode);
+            this.ach1.anchor.set(0.5, 0.5);
+            this.ach1.x = 1150;
+            this.ach1.y = 200;
+            this.ach1.scale.set(0.75);
+            this.ach1.texture.baseTexture.mipmap = false;
+            this.ach1.autoresize = true;
+            this.addChild(this.ach1);
+            setTimeout(function() {
+                $this.removeChild($this.ach1);
+                },9000);
+            this.score = +-5;
+
+        }
+
+        if(this.score > 100){
+            this.ach1 = new PIXI.Sprite.fromImage('img/ach2.png', true, imageMode);
+            this.ach1.anchor.set(0.5, 0.5);
+            this.ach1.x = 1150;
+            this.ach1.y = 200;
+            this.ach1.scale.set(0.75);
+            this.ach1.texture.baseTexture.mipmap = false;
+            this.ach1.autoresize = true;
+            this.addChild(this.ach1);
+            setTimeout(function() {
+                $this.removeChild($this.ach1);
+                },9000);
+            this.score = +-5;
+        }
+
+
+        if(this.score > 200){
+            this.ach1 = new PIXI.Sprite.fromImage('img/ach2.png', true, imageMode);
+            this.ach1.anchor.set(0.5, 0.5);
+            this.ach1.x = 1150;
+            this.ach1.y = 200;
+            this.ach1.scale.set(0.75);
+            this.ach1.texture.baseTexture.mipmap = false;
+            this.ach1.autoresize = true;
+            this.addChild(this.ach1);
+            setTimeout(function() {
+                $this.removeChild($this.ach1);
+                },9000);
+            this.score = +-5;
+        }
+    }
+
+
     startTimer(duration) {
-        console.log("hello");
         const $this = this;
         var timer = duration, minutes, seconds;
         setInterval(function () {
@@ -851,19 +937,22 @@ class GameScene extends Scene {
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
             $this.timerText.text = minutes + ":" + seconds;
+            console.log("timer running");
             //display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
                 timer = duration;
-                console.log("foofoof");
-                console.log($this.score);
+                console.log("time up");
+                //console.log("foofoof");
+                //console.log($this.score);
                 if ( $this.score < 88) {
-                    console.log("score correct");
+                    console.log("lose");
                     $this.addChild($this.popuploseContainer);
                     
                 }
 
-                if (this.timerText < 0 && this.score > 88) {
+                if ( $this.score > 1) {
+                console.log("win");
                     $this.addChild($this.popupwinContainer);
                 }
             }
@@ -940,6 +1029,7 @@ class GameScene extends Scene {
 
         });
     }
+
 
 
 
