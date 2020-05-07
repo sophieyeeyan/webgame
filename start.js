@@ -139,9 +139,8 @@ class StartScene extends Scene {
             $this.removeChild($this.storyButton);
             $this.removeChild($this.onPlayVideo4);
             scenesManager.goToScene('game');
-
+            Scenedestroy('start');
         });
-
 
     }
 
@@ -240,7 +239,7 @@ class StartScene extends Scene {
 
         onPlayVideo4() {
             const $this = this;
-            const onetexture = PIXI.Texture.from('vid/lv1.mp4');
+            const onetexture = PIXI.Texture.from('vid/lv1story.mp4');
 
             var video2 = onetexture.baseTexture.resource.source; 
 
