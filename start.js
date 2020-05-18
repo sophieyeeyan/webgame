@@ -138,8 +138,7 @@ class StartScene extends Scene {
         this.storyButton.on('pointerdown', function() {
             $this.removeChild($this.storyButton);
             $this.removeChild($this.onPlayVideo4);
-            scenesManager.goToScene('game');
-            Scenedestroy('start');
+            scenesManager.goToScene('game1');
         });
 
     }
@@ -190,11 +189,12 @@ class StartScene extends Scene {
 
         this.addChild(videoSprite);
 
-        setTimeout(function() {
-                    $this.removeChild($this.onPlayVideo1);
-                    $this.onPlayVideo2();
-                    $this.addChild($this.startgameButton);
-                },6014)
+
+        var videoHtmlElement = covertexture.baseTexture.source;
+        videoHtmlElement.addEventListener('ended', (event) => {
+            $this.onPlayVideo2();
+            $this.addChild($this.startgameButton);
+        });
 
     }
 
@@ -229,10 +229,11 @@ class StartScene extends Scene {
 
             this.addChild(videoSprite3);
 
-            setTimeout(function() {
-                    $this.removeChild($this.onPlayVideo3);
+            var videoHtmlElement = cover3texture.baseTexture.source;
+             videoHtmlElement.addEventListener('ended', (event) => {
                     $this.onPlayVideo4();
-                },8050)
+                });
+
 
 
         }
@@ -241,15 +242,15 @@ class StartScene extends Scene {
             const $this = this;
             const onetexture = PIXI.Texture.from('vid/lv1story.mp4');
 
-            var video2 = onetexture.baseTexture.resource.source; 
+            //this.video2 = onetexture.baseTexture.resource.source; 
 
-           // var startbgm = PIXI.sound.Sound.from({
-                //url: 'sound/story_bgm.mp3',
-                //loop: true,
-                //volume: 0.25
-            //});
+           var startbgm = PIXI.sound.Sound.from({
+                url: 'sound/city.mp3',
+                loop: true,
+                volume: 0.25
+            });
 
-            //var lv1bgm = startbgm.play();
+            var lv1bgm = startbgm.play();
 
             //video.loop = 'loop';
             // create a new Sprite using the video texture (yes it's that easy)
@@ -261,10 +262,13 @@ class StartScene extends Scene {
 
             this.addChild(videoSprite4);
 
-            setTimeout(function() {
-                     $this.addChild($this.storyButton);
-                     $video2.pause()
-                },1000)
+            var videoHtmlElement = onetexture.baseTexture.source;
+            videoHtmlElement.addEventListener('ended', (event) => {
+                startbgm.pause();
+                scenesManager.goToScene('game1');
+                });
+
+
 
         }
 
