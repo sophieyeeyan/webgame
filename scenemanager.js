@@ -42,4 +42,10 @@ class ScenesManager {
         }
         return false;
     }
+
+    Scenedestroy(id){
+        this.refs.gameCanvas.removeChild(this.renderer.view);
+        this.scene.destroy(true);
+        this.currentScene = null;
+    }
 }
