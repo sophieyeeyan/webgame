@@ -41,6 +41,38 @@ const style20 = new PIXI.TextStyle({
 });
 
 
+var startTexture = PIXI.Texture.from('img/start1.png');
+var startTextureDown = PIXI.Texture.from('img/start3.png');
+var startTextureOver = PIXI.Texture.from('img/start2.png');
+
+var pauseTexture = PIXI.Texture.from('img/pause1.png');
+var pauseTextureDown = PIXI.Texture.from('img/pause3.png');
+var pauseTextureOver = PIXI.Texture.from('img/pause2.png');
+
+var aboutTexture = PIXI.Texture.from('img/about1.png');
+var aboutTextureDown = PIXI.Texture.from('img/about3.png');
+var aboutTextureOver = PIXI.Texture.from('img/about2.png');
+
+var okTexture = PIXI.Texture.from('img/ok1.png');
+var okTextureDown = PIXI.Texture.from('img/ok2.png');
+var okTextureOver = PIXI.Texture.from('img/ok3.png');
+
+var startgameTexture = PIXI.Texture.from('img/startpurple1.png');
+var startgameTextureDown = PIXI.Texture.from('img/startpurple2.png');
+var startgameTextureOver = PIXI.Texture.from('img/startpurple2.png');
+
+var cancelTexture = PIXI.Texture.from('img/cancel1.png');
+var cancelTextureDown = PIXI.Texture.from('img/cancel2.png');
+var cancelTextureOver = PIXI.Texture.from('img/cancel2.png');
+
+var abtnextTexture = PIXI.Texture.from('img/abtnext1.png');
+var abtnextTextureDown = PIXI.Texture.from('img/abtnext3.png');
+var abtnextTextureOver = PIXI.Texture.from('img/abtnext2.png');
+
+
+PIXI.sound.add('fail', 'sound/fail.mp3');
+PIXI.sound.add('correct', 'sound/correct.mp3');
+
 
 
 
@@ -59,16 +91,36 @@ class Scene extends PIXI.Container {
     }
     pause() {
         this.paused = true;
+        if(this.bgmPausing){
+            this.bgmPausing();
+        }
+         if(this.storybgmPausing){
+            this.storybgmPausing();
+        }
     }
     resume() {
         this.paused = false;
+        if(this.onPlayVideo){
+            this.onPlayVideo();
+        }
+        if(this.bgmPlaying){
+            this.bgmPlaying();
+        }
+        if(this.storybgmPlaying){
+            this.storybgmPlaying();
+        }
+
     }
     isPaused() {
         return this.paused;
     }
-
   
 
 }
+
+
+
+
+
 
 
