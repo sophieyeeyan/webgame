@@ -20,6 +20,6 @@ console.log('game' + 2)
 //var game3 = scenesManager.createScene('game3', Game3Scene);
 
 
-scenesManager.goToScene('start');
+scenesManager.goToScene('game1');
 // scenesManager.goToScene('game');
 
