@@ -15,7 +15,7 @@ class GameScene4 extends Scene {
         this.people = [];
         this.selectedPerson;
         this.score = 0;
-        this.input = "";
+        this.input = [];
         this.inputContainer = new PIXI.Container();
         this.buttons();
         this.duration = 180;
@@ -855,9 +855,13 @@ class GameScene4 extends Scene {
         if(this.input.length > 6) return;
         const b = new PIXI.Sprite.from(buttons[button.number].speechImg);
         b.x = this.speechbg.x + (this.input.length * 48) + 100;
+        console.log('speech x', b.x);
         b.y = this.speechbg.y + (this.speechbg.height/2) - 40;
+        console.log('speech y',b.y);
         b.width = 48;
+        console.log('speech w', b.x);
         b.height = 48;
+        console.log('speech h', b.x);
         this.inputContainer.addChild(b);
         this.input+=button.number;
         console.log(this.input);
