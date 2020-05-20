@@ -16,60 +16,13 @@ class GameScene5 extends Scene {
         this.people = [];
         this.selectedPerson;
         this.score = 0;
-        this.input = "";
+        this.input = [];
         this.inputContainer = new PIXI.Container();
         this.buttons();
         this.duration = 180;
 
         PIXI.sound.add('fail', 'sound/fail.mp3');
         PIXI.sound.add('correct', 'sound/correct.mp3');
-
-       
-        
-        this.startButton = new PIXI.Sprite(startTexture);
-        this.startButton.anchor.set(0.5);
-        this.startButton.x = 1100;
-        this.startButton.y = 27;
-        this.startButton.interactive = true;
-        this.startButton.buttonMode = true;
-        this.startButton.normal = startTexture;
-        this.startButton.over = startTextureOver;
-        this.startButton.down = startTextureDown;
-        this.startButton.on('pointerdown', this.onButtonDown);
-        this.startButton.on('pointerup', this.onButtonUp);
-        this.startButton.on('pointerover', this.onButtonOver);
-        this.startButton.on('pointerout', this.onButtonOut);
-        this.addChild(this.startButton);
-
-        this.pauseButton = new PIXI.Sprite(pauseTexture);
-        this.pauseButton.anchor.set(0.5);
-        this.pauseButton.x = 1150;
-        this.pauseButton.y = 27;
-        this.pauseButton.interactive = true;
-        this.pauseButton.buttonMode = true;
-        this.pauseButton.normal = pauseTexture;
-        this.pauseButton.over = pauseTextureOver;
-        this.pauseButton.down = pauseTextureDown;
-        this.pauseButton.on('pointerdown', this.onButtonDown);
-        this.pauseButton.on('pointerup', this.onButtonUp);
-        this.pauseButton.on('pointerover', this.onButtonOver);
-        this.pauseButton.on('pointerout', this.onButtonOut);
-        this.addChild(this.pauseButton);
-         this.pauseButton.on('pointerdown', function() {
-            $this.addChild($this.pauseContainer);
-            });
-
-        this.pauseContainer = new PIXI.Container();
-
-        this.rect = new PIXI.Graphics();
-        this.rect.beginFill(0xEAC21D);
-        this.rect.drawRect(0, 0, 1300, 800);
-        this.rect.alpha = 0.75;
-        this.rect.endFill();
-        this.addChild(this.rect);
-
-        this.pauseContainer.addChild(this.rect);
-    
 
         this.aboutButton = new PIXI.Sprite(aboutTexture);
         this.aboutButton.anchor.set(0.5);
