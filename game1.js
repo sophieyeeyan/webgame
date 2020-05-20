@@ -18,52 +18,6 @@ class GameScene1 extends Scene {
         this.buttons();
         this.duration = 180;
 
-
-        this.startButton = new PIXI.Sprite(startTexture);
-        this.startButton.anchor.set(0.5);
-        this.startButton.x = 1100;
-        this.startButton.y = 27;
-        this.startButton.interactive = true;
-        this.startButton.buttonMode = true;
-        this.startButton.normal = startTexture;
-        this.startButton.over = startTextureOver;
-        this.startButton.down = startTextureDown;
-        this.startButton.on('pointerdown', this.onButtonDown);
-        this.startButton.on('pointerup', this.onButtonUp);
-        this.startButton.on('pointerover', this.onButtonOver);
-        this.startButton.on('pointerout', this.onButtonOut);
-        this.addChild(this.startButton);
-
-        this.pauseButton = new PIXI.Sprite(pauseTexture);
-        this.pauseButton.anchor.set(0.5);
-        this.pauseButton.x = 1150;
-        this.pauseButton.y = 27;
-        this.pauseButton.interactive = true;
-        this.pauseButton.buttonMode = true;
-        this.pauseButton.normal = pauseTexture;
-        this.pauseButton.over = pauseTextureOver;
-        this.pauseButton.down = pauseTextureDown;
-        this.pauseButton.on('pointerdown', this.onButtonDown);
-        this.pauseButton.on('pointerup', this.onButtonUp);
-        this.pauseButton.on('pointerover', this.onButtonOver);
-        this.pauseButton.on('pointerout', this.onButtonOut);
-        this.addChild(this.pauseButton);
-         this.pauseButton.on('pointerdown', function() {
-            $this.addChild($this.pauseContainer);
-            });
-
-        this.pauseContainer = new PIXI.Container();
-
-        this.rect = new PIXI.Graphics();
-        this.rect.beginFill(0xEAC21D);
-        this.rect.drawRect(0, 0, 1300, 800);
-        this.rect.alpha = 0.75;
-        this.rect.endFill();
-        this.addChild(this.rect);
-
-        this.pauseContainer.addChild(this.rect);
-    
-
         this.aboutButton = new PIXI.Sprite(aboutTexture);
         this.aboutButton.anchor.set(0.5);
         this.aboutButton.x = 1200;
@@ -866,7 +820,7 @@ class GameScene1 extends Scene {
             setTimeout(function() {
                 $this.removeChild($this.ach1);
                 },9000);
-            this.score =+ -5;
+            this.score += 5;
 
         }
 
@@ -882,7 +836,7 @@ class GameScene1 extends Scene {
             setTimeout(function() {
                 $this.removeChild($this.ach1);
                 },9000);
-            this.score =+ -5;
+            this.score += 5;
         }
 
 
@@ -898,7 +852,7 @@ class GameScene1 extends Scene {
             setTimeout(function() {
                 $this.removeChild($this.ach1);
                 },9000);
-            this.score =+ -5;
+            this.score += 5;
         }
 
         if(this.score > 80){
@@ -913,7 +867,7 @@ class GameScene1 extends Scene {
             setTimeout(function() {
                 $this.removeChild($this.ach1);
                 },9000);
-            this.score =+ -5;
+            this.score += 5;
         }
     }
 
@@ -957,6 +911,8 @@ class GameScene1 extends Scene {
              clearInterval(this.t)
         }
     }
+
+
 
 
     buttons() {
